@@ -42,7 +42,7 @@ var buttonSize = 90.dp
 fun Field() {
     var player by remember {mutableStateOf("x")}
     var turns by remember { mutableStateOf(0)}
-    var list: MutableList<String> by remember { mutableStateOf(mutableListOf(""))}
+
 
     var oneA by remember { mutableStateOf("")}
     var oneB by remember { mutableStateOf("")}
@@ -61,7 +61,7 @@ fun Field() {
         horizontalAlignment = Alignment.CenterHorizontally
     )
     {
-        Row() {
+        Row {
             Button(onClick = {
                 if (oneA == "") {
                     oneA = player
@@ -265,14 +265,32 @@ fun Field() {
                 )
             }
         }
-        var winner = "placeholder"                      //placeholder here
-        Text(
-            text = if(turns != 9) {
-            "player $player turn"} else {
-                "$winner wins"                    //placeholder here
-            },
-            fontSize = 50.sp
-        )
+        val winCombinations = listOf(
+            listOf(oneA, oneB, oneC),
+            listOf(twoA, twoB, twoC),
+            listOf(threeA, threeB, threeC),
+            listOf(oneA, twoA, threeA),
+            listOf(oneB, twoB, threeB),
+            listOf(oneC, twoC, threeC),
+            listOf(oneA, twoB, threeC),
+            listOf(oneC, twoB, threeA),
+            )
+        fun findWinner(): String {
+            winCombinations.forEach { combi ->
+                if (combi.all { it.isNotEmpty() && it == combi.first() }) return combi.first()
+            }
+            return ""
+        }
+        val winner = findWinner()
+            Text(
+                text = if(winner.isNotEmpty()) {
+                    "$winner wins"} else if(turns != 9) {
+                    "player $player turn"                   //placeholder here
+                } else {"tie"},
+                fontSize = 50.sp
+            )
+
+        
         Spacer(modifier = Modifier.size(20.dp))
         Button(onClick = {
             oneA = ""; oneB = ""; oneC = ""
