@@ -45,6 +45,7 @@ var imageNone = R.drawable.none
  */
 var buttonSize = 60.sp
 
+@OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun Field() {
@@ -373,7 +374,6 @@ fun Field() {
             listOf(list[12], list[13], list[14]),
             listOf(list[13], list[14], list[15]),
         )
-
 
         fun findWinner(): String {
             winCombinations.forEach { combi ->
