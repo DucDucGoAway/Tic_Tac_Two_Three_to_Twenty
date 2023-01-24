@@ -43,7 +43,7 @@ var imageX = R.drawable.x
 var imageO = R.drawable.o
 var imageNone = R.drawable.none
  */
-var buttonSize = 90.sp
+var buttonSize = 80.sp
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
@@ -56,7 +56,8 @@ fun Field() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(),
+            .fillMaxHeight()
+            .padding(20.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
