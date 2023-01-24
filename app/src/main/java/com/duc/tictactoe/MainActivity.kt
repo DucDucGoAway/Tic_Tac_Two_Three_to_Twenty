@@ -38,11 +38,6 @@ class MainActivity : ComponentActivity() {
 }
 
 var buttonColor = Color(0xFF6e6e6e)
-/*
-var imageX = R.drawable.x
-var imageO = R.drawable.o
-var imageNone = R.drawable.none
- */
 
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("SuspiciousIndentation")
@@ -111,46 +106,6 @@ fun Field() {
             }
         }
 
-//        val winCombinations = listOf(
-//        for (repeatVertical in 0 until (gridSize * gridSize - gridSize * 2).toInt()) {
-
-//        }
-//        )
-//        (0 until gridSize * gridSize - gridSize * 2).map { repeatVertical ->
-
-//        }
-
-        /*
-        val winCombinations = listOf(
-            //pls fix this
-
-            listOf(list[0], list[1], list[2]),
-            listOf(list[0], list[5], list[10]),
-            listOf(list[0], list[4], list[8]),
-            listOf(list[1], list[2], list[3]),
-            listOf(list[1], list[6], list[11]),
-            listOf(list[1], list[5], list[9]),
-            listOf(list[2], list[6], list[10]),
-            listOf(list[2], list[5], list[8]),
-            listOf(list[3], list[7], list[11]),
-            listOf(list[3], list[6], list[9]),
-            listOf(list[4], list[5], list[6]),
-            listOf(list[4], list[9], list[14]),
-            listOf(list[4], list[8], list[12]),
-            listOf(list[5], list[6], list[7]),
-            listOf(list[5], list[10], list[15]),
-            listOf(list[5], list[9], list[13]),
-            listOf(list[6], list[10], list[14]),
-            listOf(list[6], list[9], list[13]),
-            listOf(list[7], list[11], list[15]),
-            listOf(list[7], list[10], list[13]),
-            listOf(list[8], list[9], list[10]),
-            listOf(list[9], list[10], list[11]),
-            listOf(list[12], list[13], list[14]),
-            listOf(list[13], list[14], list[15]),
-        )
-        */
-
         fun findWinner(): String {
             fun checkEquals(a: Int, b: Int): Boolean {
                 if (a >= list.size) return false
@@ -185,9 +140,6 @@ fun Field() {
                 if (list[repeatHorizontal] != "" && checkEquals(repeatHorizontal, repeatHorizontal+1) && checkEquals(repeatHorizontal+1, repeatHorizontal+2)) return list[repeatHorizontal]
             }
 
-//            winCombinations.forEach { combi ->
-//                if (combi.all { it.isNotEmpty() && it == combi.first() }) return combi.first()
-//            }
             return ""
         }
 
