@@ -48,19 +48,29 @@ var imageNone = R.drawable.none
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun Field() {
-    val fieldSize = 4
-    val buttonSize = 240.sp / fieldSize
+    val gridSize = 5
+    val buttonSize = 240.sp / gridSize
     var player by remember { mutableStateOf("X") }
     var turns by remember { mutableStateOf(0) }
-    var done by remember { mutableStateOf(false)}
-    if(turns == fieldSize * fieldSize) {
+    var done by remember { mutableStateOf(false) }
+    if (turns == gridSize * gridSize) {
         done = true
     }
-    if(done == true) {
+    if (done == true) {
         player = "done"
     }
 
-    val list = remember { mutableStateListOf("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "") }
+    val list = remember {
+        mutableStateListOf(
+            ""
+        )
+    }
+    if(list.size < gridSize * gridSize) {
+        for (repeat in 0 until gridSize * gridSize - 1) {
+            list.add("")
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -70,18 +80,18 @@ fun Field() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LazyVerticalGrid(
-            cells = GridCells.Fixed(fieldSize)
+            cells = GridCells.Fixed(gridSize)
         ) {
             itemsIndexed(list) { index, s ->
                 Button(
                     onClick = {
                         if (done == false) {
-                            if(list[index] == "") {
+                            if (list[index] == "") {
                                 list[index] = player
-                                when(player) {
-                                    "X"     -> player = "O"
-                                    "O"     -> player = "F"
-                                    else    -> player = "X"
+                                when (player) {
+                                    "X" -> player = "O"
+                                    "O" -> player = "F"
+                                    else -> player = "X"
                                 }
                                 turns++
                             }
@@ -91,273 +101,29 @@ fun Field() {
                     Text(
                         text = list[index],
                         fontSize = buttonSize,
-                        color = when(list[index]) {
-                            "X"     -> Color.Red
-                            "O"     -> Color.Blue
-                            else    -> Color.Green
+                        color = when (list[index]) {
+                            "X" -> Color.Red
+                            "O" -> Color.Blue
+                            else -> Color.Green
                         }
                     )
-                    /*
-                    Image(
-                        painter = when (list[index]) {
-                            "X" -> painterResource(imageX)
-                            "O" -> painterResource(imageO)
-                            else -> painterResource(imageNone)
-                        },
-                        contentDescription = list[index],
-                         modifier = Modifier
-                            .size(buttonSize)
-                    )
-                     */
                 }
             }
         }
 
+//        val winCombinations = listOf(
+//        for (repeatVertical in 0 until (gridSize * gridSize - gridSize * 2).toInt()) {
+
+//        }
+//        )
+//        (0 until gridSize * gridSize - gridSize * 2).map { repeatVertical ->
+
+//        }
+
         /*
-        var oneA by remember { mutableStateOf("")}
-        var oneB by remember { mutableStateOf("")}
-        var oneC by remember { mutableStateOf("")}
-        var twoA by remember { mutableStateOf("")}
-        var twoB by remember { mutableStateOf("")}
-        var twoC by remember { mutableStateOf("")}
-        var threeA by remember { mutableStateOf("")}
-        var threeB by remember { mutableStateOf("")}
-        var threeC by remember { mutableStateOf("")}
-
-
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        )
-        {
-            Row {
-                Button(onClick = {
-                    if (done == false) {
-                        if (oneA == "") {
-                            oneA = player
-                            if (player == "X") {
-                                player = "O"
-                            } else {
-                                player = "X"
-                            }
-                            turns++
-                        }
-                }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(oneA) {
-                        "X"     -> painterResource(imageX)
-                        "O"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = oneA,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-                Button(onClick = {
-                    if (done == false) {
-                        if (oneB == "") {
-                            oneB = player
-                            if (player == "X") {
-                                player = "O"
-                            } else {
-                                player = "X"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(oneB) {
-                        "X"      -> painterResource(imageX)
-                        "O"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = oneB,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-                Button(onClick = {
-                    if (done == false) {
-                        if (oneC == "") {
-                            oneC = player
-                            if (player == "X") {
-                                player = "O"
-                            } else {
-                                player = "X"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(oneC) {
-                        "X"      -> painterResource(imageX)
-                        "O"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = oneC,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-            }
-            Row() {
-                Button(onClick = {
-                    if (done == false) {
-                        if (twoA == "") {
-                            twoA = player
-                            if (player == "X") {
-                                player = "O"
-                            } else {
-                                player = "X"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(twoA) {
-                        "X"      -> painterResource(imageX)
-                        "O"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = twoA,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-                Button(onClick = {
-                    if (done == false) {
-                        if (twoB == "") {
-                            twoB = player
-                            if (player == "X") {
-                                player = "O"
-                            } else {
-                                player = "X"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(twoB) {
-                        "X"      -> painterResource(imageX)
-                        "O"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = twoB,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-                Button(onClick = {
-                    if (done == false) {
-                        if (twoC == "") {
-                            twoC = player
-                            if (player == "X") {
-                                player = "O"
-                            } else {
-                                player = "X"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(twoC) {
-                        "X"      -> painterResource(imageX)
-                        "O"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = twoC,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-            }
-            Row() {
-                Button(onClick = {
-                    if (done == false) {
-                        if (threeA == "") {
-                            threeA = player
-                            if (player == "X") {
-                                player = "O"
-                            } else {
-                                player = "X"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(threeA) {
-                        "X"      -> painterResource(imageX)
-                        "O"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = threeA,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-                Button(onClick = {
-                    if (done == false) {
-                        if (threeB == "") {
-                            threeB = player
-                            if (player == "X") {
-                                player = "O"
-                            } else {
-                                player = "X"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(threeB) {
-                        "X"      -> painterResource(imageX)
-                        "O"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = threeB,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-                Button(onClick = {
-                    if (done == false) {
-                        if (threeC == "") {
-                            threeC = player
-                            if (player == "X") {
-                                player = "O"
-                            } else {
-                                player = "X"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(threeC) {
-                        "X"      -> painterResource(imageX)
-                        "O"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = threeC,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-            }
-            */
-
         val winCombinations = listOf(
+            //pls fix this
+
             listOf(list[0], list[1], list[2]),
             listOf(list[0], list[5], list[10]),
             listOf(list[0], list[4], list[8]),
@@ -383,11 +149,41 @@ fun Field() {
             listOf(list[12], list[13], list[14]),
             listOf(list[13], list[14], list[15]),
         )
+        */
 
         fun findWinner(): String {
-            winCombinations.forEach { combi ->
-                if (combi.all { it.isNotEmpty() && it == combi.first() }) return combi.first()
+            fun checkEquals(a: Int, b: Int): Boolean {
+                if (a >= list.size) return false
+                if (b >= list.size) return false
+                return list[a] == list[b]
             }
+            // vertical
+            for (repeatVertical in 0 until list.size - gridSize *2) {
+                if (list[repeatVertical] != "" && checkEquals(repeatVertical, repeatVertical + gridSize) && list[repeatVertical] == list[repeatVertical + gridSize + gridSize]) return list[repeatVertical]
+            }
+            // diagonal right to left, top to bottom
+            val diagonalRTL = (0 until list.size).filter { index ->
+                (index + 1) % gridSize != 1 && (index + 1) % gridSize != 2
+                        && index < gridSize * gridSize - gridSize * 2
+            }
+            for (repeatDiagonalRTL in diagonalRTL) {
+                if (list[repeatDiagonalRTL] != "" && checkEquals(repeatDiagonalRTL, repeatDiagonalRTL + gridSize-1) && checkEquals(repeatDiagonalRTL + gridSize -1, repeatDiagonalRTL + 2 * gridSize - 2)) return list[repeatDiagonalRTL]
+            }
+            // diagonal left to right, top to bottom
+            val diagonalLTR = (0 until list.size).filter { index ->
+                (index + 1) % gridSize != gridSize-1 && (index+1) % gridSize != gridSize-2
+                        && index < gridSize * gridSize - gridSize * 2
+            }
+            for (repeatDiagonalLTR in diagonalLTR) {
+                if (list[repeatDiagonalLTR] != "" && checkEquals(repeatDiagonalLTR, repeatDiagonalLTR + gridSize + 1) && checkEquals(repeatDiagonalLTR + gridSize + 1, repeatDiagonalLTR + gridSize * 2 + 2)) return list[repeatDiagonalLTR]
+            }
+            // horizontal
+//            for (repeatHorizontal)            //WIP
+
+
+//            winCombinations.forEach { combi ->
+//                if (combi.all { it.isNotEmpty() && it == combi.first() }) return combi.first()
+//            }
             return ""
         }
 
@@ -395,17 +191,17 @@ fun Field() {
         Text(
             text = if (winner.isNotEmpty()) {
                 "$winner wins"
-            } else if (turns != 16) {
-                "player $player turn"                   //placeholder here
+            } else if (turns != gridSize * gridSize) {
+                "player $player turn"
             } else {
                 "tie"
             },
             fontSize = 50.sp,
-            color = when(player) {
-                "X"     -> Color.Red
-                "O"     -> Color.Blue
-                "F"     -> Color.Green
-                else    -> Color.Yellow
+            color = when (player) {
+                "X" -> Color.Red
+                "O" -> Color.Blue
+                "F" -> Color.Green
+                else -> Color.Yellow
             }
         )
         if (winner != "") {
@@ -426,11 +222,11 @@ fun Field() {
             modifier = Modifier
                 .width(150.dp)
                 .height(70.dp),
-            colors = when(player) {
-                "X"     -> ButtonDefaults.buttonColors(Color.Red)
-                "O"     -> ButtonDefaults.buttonColors(Color.Blue)
-                "F"     -> ButtonDefaults.buttonColors(Color.Green)
-                else    -> ButtonDefaults.buttonColors(Color.Yellow)
+            colors = when (player) {
+                "X" -> ButtonDefaults.buttonColors(Color.Red)
+                "O" -> ButtonDefaults.buttonColors(Color.Blue)
+                "F" -> ButtonDefaults.buttonColors(Color.Green)
+                else -> ButtonDefaults.buttonColors(Color.Yellow)
             }
         )
         {
@@ -440,6 +236,4 @@ fun Field() {
             )
         }
     }
-
-
 }
