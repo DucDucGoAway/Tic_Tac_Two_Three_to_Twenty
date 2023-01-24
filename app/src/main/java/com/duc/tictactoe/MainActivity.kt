@@ -171,15 +171,19 @@ fun Field() {
             }
             // diagonal left to right, top to bottom
             val diagonalLTR = (0 until list.size).filter { index ->
-                (index + 1) % gridSize != gridSize-1 && (index+1) % gridSize != gridSize-2
+                (index + 1) % gridSize != gridSize && (index+1) % gridSize != gridSize-1
                         && index < gridSize * gridSize - gridSize * 2
             }
             for (repeatDiagonalLTR in diagonalLTR) {
                 if (list[repeatDiagonalLTR] != "" && checkEquals(repeatDiagonalLTR, repeatDiagonalLTR + gridSize + 1) && checkEquals(repeatDiagonalLTR + gridSize + 1, repeatDiagonalLTR + gridSize * 2 + 2)) return list[repeatDiagonalLTR]
             }
             // horizontal
-//            for (repeatHorizontal)            //WIP
-
+            val horizontal = (0 until list.size).filter { index ->
+                (index + 1) % gridSize != gridSize && (index + 1) % gridSize != gridSize-1
+            }
+            for (repeatHorizontal in horizontal) {
+                if (list[repeatHorizontal] != "" && checkEquals(repeatHorizontal, repeatHorizontal+1) && checkEquals(repeatHorizontal+1, repeatHorizontal+2)) return list[repeatHorizontal]
+            }
 
 //            winCombinations.forEach { combi ->
 //                if (combi.all { it.isNotEmpty() && it == combi.first() }) return combi.first()
@@ -188,6 +192,9 @@ fun Field() {
         }
 
         val winner = findWinner()
+        if (winner != "") {
+            done = true
+        }
         Text(
             text = if (winner.isNotEmpty()) {
                 "$winner wins"
@@ -204,9 +211,6 @@ fun Field() {
                 else -> Color.Yellow
             }
         )
-        if (winner != "") {
-            done = true
-        }
 
 
         Spacer(modifier = Modifier.size(20.dp))
