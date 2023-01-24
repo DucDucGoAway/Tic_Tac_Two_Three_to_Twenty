@@ -43,15 +43,22 @@ var imageX = R.drawable.x
 var imageO = R.drawable.o
 var imageNone = R.drawable.none
  */
-var buttonSize = 60.sp
 
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun Field() {
+    var fieldSize = 4
+    var buttonSize = 240.sp / fieldSize
     var player by remember { mutableStateOf("x") }
     var turns by remember { mutableStateOf(0) }
-    var done = false
+    var done by remember { mutableStateOf(false)}
+    if(turns == fieldSize * fieldSize) {
+        done = true
+    }
+    if(done == true) {
+        player = "done"
+    }
 
     val list = remember { mutableStateListOf("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "") }
     Column(
@@ -63,7 +70,7 @@ fun Field() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LazyVerticalGrid(
-            cells = GridCells.Fixed(4)
+            cells = GridCells.Fixed(fieldSize)
         ) {
             itemsIndexed(list) { index, s ->
                 Button(
@@ -71,12 +78,10 @@ fun Field() {
                         if (done == false) {
                             if(list[index] == "") {
                                 list[index] = player
-                                if (player == "x") {
-                                    player = "o"
-                                } else if(player == "o") {
-                                    player = "f"
-                                } else {
-                                    player = "x"
+                                when(player) {
+                                    "x"     -> player = "o"
+                                    "o"     -> player = "f"
+                                    else    -> player = "x"
                                 }
                                 turns++
                             }
@@ -86,7 +91,11 @@ fun Field() {
                     Text(
                         text = list[index],
                         fontSize = buttonSize,
-                        color = Color.Red
+                        color = when(list[index]) {
+                            "x"     -> Color.Red
+                            "o"     -> Color.Blue
+                            else    -> Color.Green
+                        }
                     )
                     /*
                     Image(
@@ -391,7 +400,13 @@ fun Field() {
             } else {
                 "tie"
             },
-            fontSize = 50.sp
+            fontSize = 50.sp,
+            color = when(player) {
+                "x"     -> Color.Red
+                "o"     -> Color.Blue
+                "f"     -> Color.Green
+                else    -> Color.Yellow
+            }
         )
         if (winner != "") {
             done = true
@@ -406,10 +421,17 @@ fun Field() {
                 }
                 turns = 0
                 player = "x"
+                done = false
             },
             modifier = Modifier
                 .width(150.dp)
-                .height(70.dp)
+                .height(70.dp),
+            colors = when(player) {
+                "x"     -> ButtonDefaults.buttonColors(Color.Red)
+                "o"     -> ButtonDefaults.buttonColors(Color.Blue)
+                "f"     -> ButtonDefaults.buttonColors(Color.Green)
+                else    -> ButtonDefaults.buttonColors(Color.Yellow)
+            }
         )
         {
             Text(
