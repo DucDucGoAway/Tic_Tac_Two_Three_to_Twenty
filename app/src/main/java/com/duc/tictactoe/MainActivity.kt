@@ -43,7 +43,7 @@ var imageX = R.drawable.x
 var imageO = R.drawable.o
 var imageNone = R.drawable.none
  */
-var buttonSize = 80.sp
+var buttonSize = 60.sp
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
@@ -52,7 +52,7 @@ fun Field() {
     var turns by remember { mutableStateOf(0) }
     var done = false
 
-    val list = remember { mutableStateListOf("", "", "", "", "", "", "", "", "") }
+    val list = remember { mutableStateListOf("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "") }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -62,16 +62,18 @@ fun Field() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LazyVerticalGrid(
-            cells = GridCells.Fixed(3)
+            cells = GridCells.Fixed(4)
         ) {
             itemsIndexed(list) { index, s ->
                 Button(
                     onClick = {
                         if (done == false) {
-                            if (list[index] == "") {
+                            if(list[index] == "") {
                                 list[index] = player
                                 if (player == "x") {
                                     player = "o"
+                                } else if(player == "o") {
+                                    player = "f"
                                 } else {
                                     player = "x"
                                 }
@@ -347,13 +349,29 @@ fun Field() {
 
         val winCombinations = listOf(
             listOf(list[0], list[1], list[2]),
+            listOf(list[0], list[5], list[10]),
             listOf(list[0], list[4], list[8]),
-            listOf(list[0], list[3], list[6]),
-            listOf(list[1], list[4], list[7]),
+            listOf(list[1], list[2], list[3]),
+            listOf(list[1], list[6], list[11]),
+            listOf(list[1], list[5], list[9]),
+            listOf(list[2], list[6], list[10]),
             listOf(list[2], list[5], list[8]),
-            listOf(list[2], list[4], list[6]),
-            listOf(list[3], list[4], list[5]),
-            listOf(list[6], list[7], list[8]),
+            listOf(list[3], list[7], list[11]),
+            listOf(list[3], list[6], list[9]),
+            listOf(list[4], list[5], list[6]),
+            listOf(list[4], list[9], list[14]),
+            listOf(list[4], list[8], list[12]),
+            listOf(list[5], list[6], list[7]),
+            listOf(list[5], list[10], list[15]),
+            listOf(list[5], list[9], list[13]),
+            listOf(list[6], list[10], list[14]),
+            listOf(list[6], list[9], list[13]),
+            listOf(list[7], list[11], list[15]),
+            listOf(list[7], list[10], list[13]),
+            listOf(list[8], list[9], list[10]),
+            listOf(list[9], list[10], list[11]),
+            listOf(list[12], list[13], list[14]),
+            listOf(list[13], list[14], list[15]),
         )
 
 
@@ -368,7 +386,7 @@ fun Field() {
         Text(
             text = if (winner.isNotEmpty()) {
                 "$winner wins"
-            } else if (turns != 9) {
+            } else if (turns != 16) {
                 "player $player turn"                   //placeholder here
             } else {
                 "tie"
