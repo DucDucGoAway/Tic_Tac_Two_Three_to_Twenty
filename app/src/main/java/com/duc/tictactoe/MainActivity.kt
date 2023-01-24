@@ -1,5 +1,6 @@
 package com.duc.tictactoe
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -38,11 +39,12 @@ var imageO = R.drawable.o
 var imageNone = R.drawable.none
 var buttonSize = 90.dp
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun Field() {
     var player by remember {mutableStateOf("x")}
     var turns by remember { mutableStateOf(0)}
-
+    var done = false
 
     var oneA by remember { mutableStateOf("")}
     var oneB by remember { mutableStateOf("")}
@@ -63,15 +65,17 @@ fun Field() {
     {
         Row {
             Button(onClick = {
-                if (oneA == "") {
-                    oneA = player
-                    if (player == "x") {
-                        player = "o"
-                    } else {
-                        player = "x"
+                if (done == false) {
+                    if (oneA == "") {
+                        oneA = player
+                        if (player == "x") {
+                            player = "o"
+                        } else {
+                            player = "x"
+                        }
+                        turns++
                     }
-                    turns++
-                }
+            }
             }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
             ) {
                 Image(painter = when(oneA) {
@@ -85,14 +89,16 @@ fun Field() {
                 )
             }
             Button(onClick = {
-                if (oneB == "") {
-                    oneB = player
-                    if (player == "x") {
-                        player = "o"
-                    } else {
-                        player = "x"
+                if (done == false) {
+                    if (oneB == "") {
+                        oneB = player
+                        if (player == "x") {
+                            player = "o"
+                        } else {
+                            player = "x"
+                        }
+                        turns++
                     }
-                    turns++
                 }
             }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
             ) {
@@ -107,14 +113,16 @@ fun Field() {
                 )
             }
             Button(onClick = {
-                if (oneC == "") {
-                    oneC = player
-                    if (player == "x") {
-                        player = "o"
-                    } else {
-                        player = "x"
+                if (done == false) {
+                    if (oneC == "") {
+                        oneC = player
+                        if (player == "x") {
+                            player = "o"
+                        } else {
+                            player = "x"
+                        }
+                        turns++
                     }
-                    turns++
                 }
             }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
             ) {
@@ -131,14 +139,16 @@ fun Field() {
         }
         Row() {
             Button(onClick = {
-                if (twoA == "") {
-                    twoA = player
-                    if (player == "x") {
-                        player = "o"
-                    } else {
-                        player = "x"
+                if (done == false) {
+                    if (twoA == "") {
+                        twoA = player
+                        if (player == "x") {
+                            player = "o"
+                        } else {
+                            player = "x"
+                        }
+                        turns++
                     }
-                    turns++
                 }
             }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
             ) {
@@ -153,14 +163,16 @@ fun Field() {
                 )
             }
             Button(onClick = {
-                if (twoB == "") {
-                    twoB = player
-                    if (player == "x") {
-                        player = "o"
-                    } else {
-                        player = "x"
+                if (done == false) {
+                    if (twoB == "") {
+                        twoB = player
+                        if (player == "x") {
+                            player = "o"
+                        } else {
+                            player = "x"
+                        }
+                        turns++
                     }
-                    turns++
                 }
             }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
             ) {
@@ -175,14 +187,16 @@ fun Field() {
                 )
             }
             Button(onClick = {
-                if (twoC == "") {
-                    twoC = player
-                    if (player == "x") {
-                        player = "o"
-                    } else {
-                        player = "x"
+                if (done == false) {
+                    if (twoC == "") {
+                        twoC = player
+                        if (player == "x") {
+                            player = "o"
+                        } else {
+                            player = "x"
+                        }
+                        turns++
                     }
-                    turns++
                 }
             }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
             ) {
@@ -199,14 +213,16 @@ fun Field() {
         }
         Row() {
             Button(onClick = {
-                if (threeA == "") {
-                    threeA = player
-                    if (player == "x") {
-                        player = "o"
-                    } else {
-                        player = "x"
+                if (done == false) {
+                    if (threeA == "") {
+                        threeA = player
+                        if (player == "x") {
+                            player = "o"
+                        } else {
+                            player = "x"
+                        }
+                        turns++
                     }
-                    turns++
                 }
             }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
             ) {
@@ -221,14 +237,16 @@ fun Field() {
                 )
             }
             Button(onClick = {
-                if (threeB == "") {
-                    threeB = player
-                    if (player == "x") {
-                        player = "o"
-                    } else {
-                        player = "x"
+                if (done == false) {
+                    if (threeB == "") {
+                        threeB = player
+                        if (player == "x") {
+                            player = "o"
+                        } else {
+                            player = "x"
+                        }
+                        turns++
                     }
-                    turns++
                 }
             }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
             ) {
@@ -243,14 +261,16 @@ fun Field() {
                 )
             }
             Button(onClick = {
-                if (threeC == "") {
-                    threeC = player
-                    if (player == "x") {
-                        player = "o"
-                    } else {
-                        player = "x"
+                if (done == false) {
+                    if (threeC == "") {
+                        threeC = player
+                        if (player == "x") {
+                            player = "o"
+                        } else {
+                            player = "x"
+                        }
+                        turns++
                     }
-                    turns++
                 }
             }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
             ) {
@@ -289,6 +309,9 @@ fun Field() {
                 } else {"tie"},
                 fontSize = 50.sp
             )
+        if(winner != "") {
+            done = true
+        }
 
         
         Spacer(modifier = Modifier.size(20.dp))
