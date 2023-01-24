@@ -37,14 +37,14 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-var buttonColor = Color(0xFF6e6e6e)
+var buttonColor = Color(0xFFcccccc)
 
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun Field() {
-    val gridSize = 5
-    val buttonSize = 240.sp / gridSize
+    val gridSize = 4
+    val textSize = 240.sp / gridSize
     var player by remember { mutableStateOf("X") }
     var turns by remember { mutableStateOf(0) }
     var done by remember { mutableStateOf(false) }
@@ -70,7 +70,7 @@ fun Field() {
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(20.dp),
+            .padding(5.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -91,16 +91,17 @@ fun Field() {
                                 turns++
                             }
                         }
-                    }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
+                    },
+                    colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
                 ) {
                     Text(
                         text = list[index],
-                        fontSize = buttonSize,
+                        fontSize = textSize,
                         color = when (list[index]) {
                             "X" -> Color.Red
                             "O" -> Color.Blue
                             else -> Color.Green
-                        }
+                        },
                     )
                 }
             }
