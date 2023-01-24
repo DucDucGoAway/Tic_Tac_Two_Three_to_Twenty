@@ -50,7 +50,7 @@ var imageNone = R.drawable.none
 fun Field() {
     val fieldSize = 4
     val buttonSize = 240.sp / fieldSize
-    var player by remember { mutableStateOf("x") }
+    var player by remember { mutableStateOf("X") }
     var turns by remember { mutableStateOf(0) }
     var done by remember { mutableStateOf(false)}
     if(turns == fieldSize * fieldSize) {
@@ -79,9 +79,9 @@ fun Field() {
                             if(list[index] == "") {
                                 list[index] = player
                                 when(player) {
-                                    "x"     -> player = "o"
-                                    "o"     -> player = "f"
-                                    else    -> player = "x"
+                                    "X"     -> player = "O"
+                                    "O"     -> player = "F"
+                                    else    -> player = "X"
                                 }
                                 turns++
                             }
@@ -92,16 +92,16 @@ fun Field() {
                         text = list[index],
                         fontSize = buttonSize,
                         color = when(list[index]) {
-                            "x"     -> Color.Red
-                            "o"     -> Color.Blue
+                            "X"     -> Color.Red
+                            "O"     -> Color.Blue
                             else    -> Color.Green
                         }
                     )
                     /*
                     Image(
                         painter = when (list[index]) {
-                            "x" -> painterResource(imageX)
-                            "o" -> painterResource(imageO)
+                            "X" -> painterResource(imageX)
+                            "O" -> painterResource(imageO)
                             else -> painterResource(imageNone)
                         },
                         contentDescription = list[index],
@@ -138,10 +138,10 @@ fun Field() {
                     if (done == false) {
                         if (oneA == "") {
                             oneA = player
-                            if (player == "x") {
-                                player = "o"
+                            if (player == "X") {
+                                player = "O"
                             } else {
-                                player = "x"
+                                player = "X"
                             }
                             turns++
                         }
@@ -149,8 +149,8 @@ fun Field() {
                 }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
                 ) {
                     Image(painter = when(oneA) {
-                        "x"     -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
+                        "X"     -> painterResource(imageX)
+                        "O"     -> painterResource(imageO)
                         else    -> painterResource(imageNone)
                     },
                         contentDescription = oneA,
@@ -162,10 +162,10 @@ fun Field() {
                     if (done == false) {
                         if (oneB == "") {
                             oneB = player
-                            if (player == "x") {
-                                player = "o"
+                            if (player == "X") {
+                                player = "O"
                             } else {
-                                player = "x"
+                                player = "X"
                             }
                             turns++
                         }
@@ -173,8 +173,8 @@ fun Field() {
                 }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
                 ) {
                     Image(painter = when(oneB) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
+                        "X"      -> painterResource(imageX)
+                        "O"     -> painterResource(imageO)
                         else    -> painterResource(imageNone)
                     },
                         contentDescription = oneB,
@@ -186,10 +186,10 @@ fun Field() {
                     if (done == false) {
                         if (oneC == "") {
                             oneC = player
-                            if (player == "x") {
-                                player = "o"
+                            if (player == "X") {
+                                player = "O"
                             } else {
-                                player = "x"
+                                player = "X"
                             }
                             turns++
                         }
@@ -197,8 +197,8 @@ fun Field() {
                 }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
                 ) {
                     Image(painter = when(oneC) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
+                        "X"      -> painterResource(imageX)
+                        "O"     -> painterResource(imageO)
                         else    -> painterResource(imageNone)
                     },
                         contentDescription = oneC,
@@ -212,10 +212,10 @@ fun Field() {
                     if (done == false) {
                         if (twoA == "") {
                             twoA = player
-                            if (player == "x") {
-                                player = "o"
+                            if (player == "X") {
+                                player = "O"
                             } else {
-                                player = "x"
+                                player = "X"
                             }
                             turns++
                         }
@@ -223,8 +223,8 @@ fun Field() {
                 }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
                 ) {
                     Image(painter = when(twoA) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
+                        "X"      -> painterResource(imageX)
+                        "O"     -> painterResource(imageO)
                         else    -> painterResource(imageNone)
                     },
                         contentDescription = twoA,
@@ -236,10 +236,10 @@ fun Field() {
                     if (done == false) {
                         if (twoB == "") {
                             twoB = player
-                            if (player == "x") {
-                                player = "o"
+                            if (player == "X") {
+                                player = "O"
                             } else {
-                                player = "x"
+                                player = "X"
                             }
                             turns++
                         }
@@ -247,8 +247,8 @@ fun Field() {
                 }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
                 ) {
                     Image(painter = when(twoB) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
+                        "X"      -> painterResource(imageX)
+                        "O"     -> painterResource(imageO)
                         else    -> painterResource(imageNone)
                     },
                         contentDescription = twoB,
@@ -260,10 +260,10 @@ fun Field() {
                     if (done == false) {
                         if (twoC == "") {
                             twoC = player
-                            if (player == "x") {
-                                player = "o"
+                            if (player == "X") {
+                                player = "O"
                             } else {
-                                player = "x"
+                                player = "X"
                             }
                             turns++
                         }
@@ -271,8 +271,8 @@ fun Field() {
                 }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
                 ) {
                     Image(painter = when(twoC) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
+                        "X"      -> painterResource(imageX)
+                        "O"     -> painterResource(imageO)
                         else    -> painterResource(imageNone)
                     },
                         contentDescription = twoC,
@@ -286,10 +286,10 @@ fun Field() {
                     if (done == false) {
                         if (threeA == "") {
                             threeA = player
-                            if (player == "x") {
-                                player = "o"
+                            if (player == "X") {
+                                player = "O"
                             } else {
-                                player = "x"
+                                player = "X"
                             }
                             turns++
                         }
@@ -297,8 +297,8 @@ fun Field() {
                 }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
                 ) {
                     Image(painter = when(threeA) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
+                        "X"      -> painterResource(imageX)
+                        "O"     -> painterResource(imageO)
                         else    -> painterResource(imageNone)
                     },
                         contentDescription = threeA,
@@ -310,10 +310,10 @@ fun Field() {
                     if (done == false) {
                         if (threeB == "") {
                             threeB = player
-                            if (player == "x") {
-                                player = "o"
+                            if (player == "X") {
+                                player = "O"
                             } else {
-                                player = "x"
+                                player = "X"
                             }
                             turns++
                         }
@@ -321,8 +321,8 @@ fun Field() {
                 }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
                 ) {
                     Image(painter = when(threeB) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
+                        "X"      -> painterResource(imageX)
+                        "O"     -> painterResource(imageO)
                         else    -> painterResource(imageNone)
                     },
                         contentDescription = threeB,
@@ -334,10 +334,10 @@ fun Field() {
                     if (done == false) {
                         if (threeC == "") {
                             threeC = player
-                            if (player == "x") {
-                                player = "o"
+                            if (player == "X") {
+                                player = "O"
                             } else {
-                                player = "x"
+                                player = "X"
                             }
                             turns++
                         }
@@ -345,8 +345,8 @@ fun Field() {
                 }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
                 ) {
                     Image(painter = when(threeC) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
+                        "X"      -> painterResource(imageX)
+                        "O"     -> painterResource(imageO)
                         else    -> painterResource(imageNone)
                     },
                         contentDescription = threeC,
@@ -402,9 +402,9 @@ fun Field() {
             },
             fontSize = 50.sp,
             color = when(player) {
-                "x"     -> Color.Red
-                "o"     -> Color.Blue
-                "f"     -> Color.Green
+                "X"     -> Color.Red
+                "O"     -> Color.Blue
+                "F"     -> Color.Green
                 else    -> Color.Yellow
             }
         )
@@ -420,16 +420,16 @@ fun Field() {
                     list[index] = ""
                 }
                 turns = 0
-                player = "x"
+                player = "X"
                 done = false
             },
             modifier = Modifier
                 .width(150.dp)
                 .height(70.dp),
             colors = when(player) {
-                "x"     -> ButtonDefaults.buttonColors(Color.Red)
-                "o"     -> ButtonDefaults.buttonColors(Color.Blue)
-                "f"     -> ButtonDefaults.buttonColors(Color.Green)
+                "X"     -> ButtonDefaults.buttonColors(Color.Red)
+                "O"     -> ButtonDefaults.buttonColors(Color.Blue)
+                "F"     -> ButtonDefaults.buttonColors(Color.Green)
                 else    -> ButtonDefaults.buttonColors(Color.Yellow)
             }
         )
