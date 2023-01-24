@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalFoundationApi::class)
+@file:OptIn(ExperimentalFoundationApi::class, ExperimentalFoundationApi::class)
 
 package com.duc.tictactoe
 
@@ -46,6 +46,7 @@ var imageNone = R.drawable.none
  */
 var buttonSize = 80.sp
 
+@OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun Field() {
