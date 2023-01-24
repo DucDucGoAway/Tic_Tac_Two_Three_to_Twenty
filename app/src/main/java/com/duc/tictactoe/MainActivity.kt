@@ -48,8 +48,8 @@ var imageNone = R.drawable.none
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun Field() {
-    var fieldSize = 4
-    var buttonSize = 240.sp / fieldSize
+    val fieldSize = 4
+    val buttonSize = 240.sp / fieldSize
     var player by remember { mutableStateOf("x") }
     var turns by remember { mutableStateOf(0) }
     var done by remember { mutableStateOf(false)}
