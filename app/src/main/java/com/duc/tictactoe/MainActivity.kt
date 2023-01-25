@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     var start by remember { mutableStateOf(false) }                             //title screen
-                    Box() {
+                    Column() {
                         Button(
                             onClick = { if(start == false) {start = true} else {
                                 start = false
@@ -49,6 +49,7 @@ class MainActivity : ComponentActivity() {
                             Text(text = if(start == false) {"start"}
                             else {"stop"})
                         }
+
                     }
 
                     if (start == false) {
@@ -67,6 +68,28 @@ var playersAmount = 2
 fun PlayerAmountReset() {
     playersAmount = 2
 }
+var name1 = ""
+var name2 = ""
+var name3 = ""
+var name4 = ""
+var name5 = ""
+var name6 = ""
+var name7 = ""
+var name8 = ""
+var name9 = ""
+var name10 = ""
+
+var color1 = -1
+var color2 = -1
+var color3 = -1
+var color4 = -1
+var color5 = -1
+var color6 = -1
+var color7 = -1
+var color8 = -1
+var color9 = -1
+var color10 = -1
+
 
 @Composable
 fun TitleScreen() {
@@ -91,23 +114,236 @@ fun TitleScreen() {
             playersAmountDisplay = 1
         }
     }
+    Box() {
+        Column(modifier = Modifier.padding(start = 15.dp, top = 40.dp)) {
+            Row() {
+                var customName1 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName1, onValueChange = { newText ->
+                    customName1 = newText
+                    name1 = customName1
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Letter ")
+
+                var customColor1 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor1, onValueChange = { newText ->
+                    customColor1 = newText
+                    color1 = customColor1.toInt()
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Color 1")
+            }
+            Row() {
+                var customName2 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName2, onValueChange = { newText ->
+                    customName2 = newText
+                    name2 = customName2
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Letter ")
+
+                var customColor2 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor2, onValueChange = { newText ->
+                    customColor2 = newText
+                    color2 = customColor2.toInt()
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Color 2")
+            }
+            Row() {
+                var customName3 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName3, onValueChange = { newText ->
+                    customName3 = newText
+                    name3 = customName3
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Letter ")
+
+                var customColor3 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor3, onValueChange = { newText ->
+                    customColor3 = newText
+                    color3 = customColor3.toInt()
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Color 3")
+            }
+            Row() {
+                var customName4 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName4, onValueChange = { newText ->
+                    customName4 = newText
+                    name4 = customName4
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Letter ")
+
+                var customColor4 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor4, onValueChange = { newText ->
+                    customColor4 = newText
+                    color4 = customColor4.toInt()
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Color 4")
+            }
+            Row() {
+                var customName5 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName5, onValueChange = { newText ->
+                    customName5 = newText
+                    name5 = customName5
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Letter ")
+
+                var customColor5 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor5, onValueChange = { newText ->
+                    customColor5 = newText
+                    color5 = customColor5.toInt()
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Color 5")
+            }
+            Row() {
+                var customName6 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName6, onValueChange = { newText ->
+                    customName6 = newText
+                    name6 = customName6
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Letter ")
+
+                var customColor6 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor6, onValueChange = { newText ->
+                    customColor6 = newText
+                    color6 = customColor6.toInt()
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Color 6")
+            }
+            Row() {
+                var customName7 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName7, onValueChange = { newText ->
+                    customName7 = newText
+                    name7 = customName7
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Letter ")
+
+                var customColor7 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor7, onValueChange = { newText ->
+                    customColor7 = newText
+                    color7 = customColor7.toInt()
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Color 7")
+            }
+            Row() {
+                var customName8 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName8, onValueChange = { newText ->
+                    customName8 = newText
+                    name8 = customName8
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Letter ")
+
+                var customColor8 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor8, onValueChange = { newText ->
+                    customColor8 = newText
+                    color8 = customColor8.toInt()
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Color 8")
+            }
+            Row() {
+                var customName9 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName9, onValueChange = { newText ->
+                    customName9 = newText
+                    name9 = customName9
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Letter ")
+
+                var customColor9 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor9, onValueChange = { newText ->
+                    customColor9 = newText
+                    color9 = customColor9.toInt()
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Color 9")
+            }
+            Row() {
+                var customName10 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName10, onValueChange = { newText ->
+                    customName10 = newText
+                    name10 = customName10
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Letter ")
+
+                var customColor10 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor10, onValueChange = { newText ->
+                    customColor10 = newText
+                    color10 = customColor10.toInt()
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+                )
+                Text(text = "Color 10")
+            }
+        }
+
+    }
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(20.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(top = 20.dp, end = 15.dp),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.End
     ) {
         Spacer(modifier = Modifier.size(50.dp))
         Text(text = "$playersAmountDisplay players", modifier = Modifier.padding(bottom = 10.dp), color = Color.White)
-        Row() {
-            Button(onClick = { PlayerMinus() }, modifier = Modifier.padding(end = 30.dp)) {
-                Text(text = "-")
-            }
-            Button(onClick = { PlayerPlus() }) {
-                Text(text = "+")
-            }
+        Button(onClick = { PlayerPlus() }, colors = ButtonDefaults.buttonColors(Color.White)) {
+            Text(text = "+")
+        }
+        Button(onClick = { PlayerMinus() }, colors = ButtonDefaults.buttonColors(Color.White)) {
+            Text(text = "-")
         }
     }
 }
@@ -123,53 +359,82 @@ fun Field() {
     val gridSize = playersAmount + 1
     val textSize = 240.sp / gridSize
     val playerList = remember {
-        mutableStateListOf("X")
+        mutableStateListOf(
+            "X",
+            "O",
+            "F",
+            "C",
+            "K",
+            "T",
+            "B",
+            "N",
+            "U",
+            "Z",
+            "P",
+            "R",
+            "G",
+            "J",
+            "L",
+            "H",
+            "E",
+            "A",
+            "I",
+            "M"
+        )
     }
-    if(playerList.size < playersAmount) {
-        playerList.add("O")
-        playerList.add("F")
-        playerList.add("C")
-        playerList.add("K")
-        playerList.add("T")
-        playerList.add("B")
-        playerList.add("N")
-        playerList.add("U")
-        playerList.add("Z")
-        playerList.add("P")
-        playerList.add("R")
-        playerList.add("G")
-        playerList.add("J")
-        playerList.add("L")
-        playerList.add("H")
-        playerList.add("E")
-        playerList.add("A")
-        playerList.add("I")
-        playerList.add("M")
+
+        if(name1 == String() && name1 != "") { playerList[0] = name1 }
+        if(name2 == String() && name2 != "") { playerList[1] = name2 }
+        if(name3 == String() && name3 != "") { playerList[2] = name3 }
+        if(name4 == String() && name4 != "") { playerList[3] = name4 }
+        if(name5 == String() && name5 != "") { playerList[4] = name5 }
+        if(name6 == String() && name6 != "") { playerList[5] = name6 }
+        if(name7 == String() && name7 != "") { playerList[6] = name7 }
+        if(name8 == String() && name8 != "") { playerList[7] = name8 }
+        if(name9 == String() && name9 != "") { playerList[8] = name9 }
+        if(name10 == String() && name10 != "") { playerList[9] = name10 }
+
+    val colorValueList = remember {
+        mutableStateListOf(
+            0xFFff0026,
+            0xFF0008ff,
+            0xFF09ff00,
+            0xFFffea00,
+            0xFFb700ff,
+            0xFF00fff7,
+            0xFFff0073,
+            0xFFff8800,
+            0xFF000000,
+            0xFFffffff,
+            0xFF00ff84,
+            0xFF8c1c00,
+            0xFF00598c,
+            0xFF0e008c,
+            0xFF008c05,
+            0xFF8c0000,
+            0xFF006e8c,
+            0xFF608c00,
+            0xFFff7dee,
+            0xFF8c0033
+        )
     }
     val colorList = remember {
-        mutableStateListOf(0xFFff0026)
+        mutableStateListOf(colorValueList[0])
     }
-    if(colorList.size < playersAmount) {
-        colorList.add(0xFF0008ff)
-        colorList.add(0xFF09ff00)
-        colorList.add(0xFFffea00)
-        colorList.add(0xFFb700ff)
-        colorList.add(0xFF00fff7)
-        colorList.add(0xFFff0073)
-        colorList.add(0xFFff8800)
-        colorList.add(0xFF000000)
-        colorList.add(0xFFffffff)
-        colorList.add(0xFF00ff84)
-        colorList.add(0xFF8c1c00)
-        colorList.add(0xFF00598c)
-        colorList.add(0xFF0e008c)
-        colorList.add(0xFF008c05)
-        colorList.add(0xFF8c0000)
-        colorList.add(0xFF006e8c)
-        colorList.add(0xFF608c00)
-        colorList.add(0xFFff7dee)
-        colorList.add(0xFF8c0033)
+
+    for(colorListAddRepeater in 1 until playersAmount) {
+        colorList.add(colorValueList[colorListAddRepeater])
     }
+        if(color1 >= 1 && color1 <= 20) {colorList.set(0, colorValueList[color1-1])}
+        if(color2 >= 1 && color2 <= 20) {colorList.set(1, colorValueList[color2-1])}
+        if(color3 >= 1 && color3 <= 20) {colorList.set(2, colorValueList[color3-1])}
+        if(color4 >= 1 && color4 <= 20) {colorList.set(3, colorValueList[color4-1])}
+        if(color5 >= 1 && color5 <= 20) {colorList.set(4, colorValueList[color5-1])}
+        if(color6 >= 1 && color6 <= 20) {colorList.set(5, colorValueList[color6-1])}
+        if(color7 >= 1 && color7 <= 20) {colorList.set(6, colorValueList[color7-1])}
+        if(color8 >= 1 && color8 <= 20) {colorList.set(7, colorValueList[color8-1])}
+        if(color9 >= 1 && color9 <= 20) {colorList.set(8, colorValueList[color9-1])}
+        if(color10 >= 1 && color10 <= 20) {colorList.set(9, colorValueList[color10-1])}
 
     var playerNumber by remember { mutableStateOf(0) }
     var turns by remember { mutableStateOf(0) }
