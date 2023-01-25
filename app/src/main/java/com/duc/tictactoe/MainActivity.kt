@@ -307,7 +307,8 @@ fun Field() {
             },
             fontSize = 50.sp,
             color = if(done == false) {Color(colorList[playerNumber])}                                      // text color
-        else {Color(colorList[winner])}
+        else if(winner != -1) {Color(colorList[winner])}
+        else {Color.White}
         )
 
         Spacer(modifier = Modifier.size(20.dp))
@@ -327,7 +328,7 @@ fun Field() {
                 ButtonDefaults.buttonColors(backgroundColor = Color(colorList[playerNumber])
                 )
             } else {
-                ButtonDefaults.buttonColors(backgroundColor = Color(colorList[winner]))
+                ButtonDefaults.buttonColors(backgroundColor = if(winner != -1) {Color(colorList[winner])} else {Color.White})
             }
         )
         {
