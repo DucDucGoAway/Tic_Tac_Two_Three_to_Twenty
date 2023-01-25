@@ -30,12 +30,28 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    /*
                     var start by remember { mutableStateOf(false) }
                     if(start == false) {
                         Button(onClick = { start = true }) {
                             Text(text = "start")
                         }
                     } else {
+                        Field()
+                    }
+                    */
+                    var start by remember { mutableStateOf(false) }
+                    if (start == false) {
+                        Box() {
+                            TitleScreen()
+                            Button(
+                                onClick = { start = true }, modifier = Modifier
+                                    .size(100.dp)
+                            ) {
+                                Text(text = "start")
+                            }
+                        }
+                    } else  {
                         Field()
                     }
                 }
@@ -45,13 +61,60 @@ class MainActivity : ComponentActivity() {
 }
 
 
+var playersAmount = 2
+
+@Composable
+fun TitleScreen() {
+    var playersAmountDisplay by remember {
+        mutableStateOf(2)
+    }
+    fun PlayerMinus() {
+        if(playersAmountDisplay > 1) {
+            playersAmount --
+            playersAmountDisplay --
+        } else {
+            playersAmount = 10
+            playersAmountDisplay = 10
+        }
+    }
+    fun PlayerPlus() {
+        if(playersAmountDisplay < 10) {
+            playersAmount++
+            playersAmountDisplay++
+        } else {
+            playersAmount = 1
+            playersAmountDisplay = 1
+        }
+    }
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .padding(20.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Spacer(modifier = Modifier.size(50.dp))
+        Text(text = "$playersAmountDisplay players", modifier = Modifier.padding(bottom = 10.dp), color = Color.White)
+        Row() {
+            Button(onClick = { PlayerMinus() }, modifier = Modifier.padding(end = 30.dp)) {
+                Text(text = "-")
+            }
+            Button(onClick = { PlayerPlus() }) {
+                Text(text = "+")
+            }
+        }
+    }
+}
+
+
+
 
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun Field() {
     val buttonColor = Color(0xFFcccccc)
-    val playersAmount = 10
     val gridSize = playersAmount + 1
     val textSize = 240.sp / gridSize
     val playerList = remember {
