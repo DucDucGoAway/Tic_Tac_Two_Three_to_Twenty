@@ -30,27 +30,29 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    /*
-                    var start by remember { mutableStateOf(false) }
-                    if(start == false) {
-                        Button(onClick = { start = true }) {
-                            Text(text = "start")
-                        }
-                    } else {
-                        Field()
-                    }
-                    */
-                    var start by remember { mutableStateOf(false) }
-                    if (start == false) {
-                        Box() {
-                            TitleScreen()
-                            Button(
-                                onClick = { start = true }, modifier = Modifier
-                                    .size(100.dp)
-                            ) {
-                                Text(text = "start")
+                    var start by remember { mutableStateOf(false) }                             //title screen
+                    Box() {
+                        Button(
+                            onClick = { if(start == false) {start = true} else {
+                                start = false
+                                PlayerAmountReset()
+                            } },
+                            modifier = Modifier
+                                .height(35.dp)
+                                .fillMaxWidth(),
+                            colors = if(start == false) {
+                                ButtonDefaults.buttonColors(Color.Green)
+                            } else {
+                                ButtonDefaults.buttonColors(Color.Red)
                             }
+                        ) {
+                            Text(text = if(start == false) {"start"}
+                            else {"stop"})
                         }
+                    }
+
+                    if (start == false) {
+                            TitleScreen()
                     } else  {
                         Field()
                     }
@@ -62,6 +64,9 @@ class MainActivity : ComponentActivity() {
 
 
 var playersAmount = 2
+fun PlayerAmountReset() {
+    playersAmount = 2
+}
 
 @Composable
 fun TitleScreen() {
@@ -141,24 +146,6 @@ fun Field() {
         playerList.add("I")
         playerList.add("M")
     }
-    var playerNumber by remember { mutableStateOf(0) }
-    var turns by remember { mutableStateOf(0) }
-    var done by remember { mutableStateOf(false) }
-    if (turns == gridSize * gridSize) {
-        done = true
-    }
-
-
-    val list = remember {
-        mutableStateListOf(
-            -1
-        )
-    }
-    if (list.size < gridSize * gridSize) {
-        for (repeat in 0 until gridSize * gridSize - 1) {
-            list.add(-1)
-        }
-    }
     val colorList = remember {
         mutableStateListOf(0xFFff0026)
     }
@@ -184,7 +171,25 @@ fun Field() {
         colorList.add(0xFF8c0033)
     }
 
-    Column(
+    var playerNumber by remember { mutableStateOf(0) }
+    var turns by remember { mutableStateOf(0) }
+    var done by remember { mutableStateOf(false) }
+    if (turns == gridSize * gridSize) {
+        done = true
+    }
+
+    val list = remember {
+        mutableStateListOf(
+            -1
+        )
+    }
+    if (list.size < gridSize * gridSize) {
+        for (repeat in 0 until gridSize * gridSize - 1) {
+            list.add(-1)
+        }
+    }
+
+    Column(                                                                                                 // layout
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
@@ -196,7 +201,7 @@ fun Field() {
             cells = GridCells.Fixed(gridSize)
         ) {
             itemsIndexed(list) { index, s ->
-                Button(
+                Button(                                                                                     // button
                     onClick = {
                         if (done == false) {
                             if (list[index] == -1) {
@@ -210,9 +215,9 @@ fun Field() {
                             }
                         }
                     },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
+                    colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)                     // button color
                 ) {
-                    Text(
+                    Text(                                                                                   // button text
                         text = if (list[index] != -1) {
                             playerList[list[index]]
                         } else {
@@ -229,13 +234,13 @@ fun Field() {
             }
         }
 
-        fun findWinner(): Int {
-            fun checkEquals(a: Int, b: Int): Boolean {
+        fun findWinner(): Int {                                                                             // find Winner
+            fun checkEquals(a: Int, b: Int): Boolean {                                                      // compare numbers
                 if (a >= list.size) return false
                 if (b >= list.size) return false
                 return list[a] == list[b]
             }
-            // vertical
+                                                                                                            // vertical check
             for (repeatVertical in 0 until list.size - gridSize * 2) {
                 if (list[repeatVertical] != -1 && checkEquals(
                         repeatVertical,
@@ -243,12 +248,12 @@ fun Field() {
                     ) && list[repeatVertical] == list[repeatVertical + gridSize + gridSize]
                 ) return list[repeatVertical]
             }
-            // diagonal right to left, top to bottom
-            val diagonalRTL = (0 until list.size).filter { index ->
+                                                                                                            // diagonal right to left check
+            val diagonalRTL = (0 until list.size).filter { index ->                                     // number filter
                 (index + 1) % gridSize != 1 && (index + 1) % gridSize != 2
                         && index < gridSize * gridSize - gridSize * 2
             }
-            for (repeatDiagonalRTL in diagonalRTL) {
+            for (repeatDiagonalRTL in diagonalRTL) {                                                        // number checker
                 if (list[repeatDiagonalRTL] != -1 && checkEquals(
                         repeatDiagonalRTL,
                         repeatDiagonalRTL + gridSize - 1
@@ -258,12 +263,12 @@ fun Field() {
                     )
                 ) return list[repeatDiagonalRTL]
             }
-            // diagonal left to right, top to bottom
-            val diagonalLTR = (0 until list.size).filter { index ->
+                                                                                                            // diagonal left to right check
+            val diagonalLTR = (0 until list.size).filter { index ->                                     // number filter
                 (index + 1) % gridSize != 0 && (index + 1) % gridSize != gridSize - 1
                         && index < gridSize * gridSize - gridSize * 2
             }
-            for (repeatDiagonalLTR in diagonalLTR) {
+            for (repeatDiagonalLTR in diagonalLTR) {                                                        // number checker
                 if (list[repeatDiagonalLTR] != -1 && checkEquals(
                         repeatDiagonalLTR,
                         repeatDiagonalLTR + gridSize + 1
@@ -273,11 +278,11 @@ fun Field() {
                     )
                 ) return list[repeatDiagonalLTR]
             }
-            // horizontal
-            val horizontal = (0 until list.size).filter { index ->
+                                                                                                            // horizontal
+            val horizontal = (0 until list.size).filter { index ->                                      // number filter
                 (index + 1) % gridSize != 0 && (index + 1) % gridSize != gridSize - 1
             }
-            for (repeatHorizontal in horizontal) {
+            for (repeatHorizontal in horizontal) {                                                          // number checker
                 if (list[repeatHorizontal] != -1 && checkEquals(
                         repeatHorizontal,
                         repeatHorizontal + 1
@@ -292,7 +297,7 @@ fun Field() {
         if (winner != -1) {
             done = true
         }
-        Text(
+        Text(                                                                                               // descriptor text
             text = if (winner != -1) {
                 "${playerList[winner]} wins"
             } else if (turns != gridSize * gridSize) {
@@ -301,12 +306,12 @@ fun Field() {
                 "tie"
             },
             fontSize = 50.sp,
-            color = if(done == false) {Color(colorList[playerNumber])}
+            color = if(done == false) {Color(colorList[playerNumber])}                                      // text color
         else {Color(colorList[winner])}
         )
 
         Spacer(modifier = Modifier.size(20.dp))
-        Button(
+        Button(                                                                                             // restart button
             onClick = {
                 for (index in 0 until list.size) {
                     list[index] = -1
