@@ -580,14 +580,10 @@ fun Field() {
             0xFF8c0033
         )
     }
-    val colorList = remember {
-        mutableStateListOf(colorValueList[0])
-    }
+    val colorList = remember { mutableStateListOf(colorValueList[0]) }
 
+    for (colorListAddRepeater in 1 until 20) { colorList.add(colorValueList[colorListAddRepeater]) }
 
-    for (colorListAddRepeater in 1 until 20) {
-        colorList.add(colorValueList[colorListAddRepeater])
-    }
     if (color1 != "") if (color1.toInt() in 1..20) { colorList[0] = colorValueList[color1.toInt() - 1] }
     if (color2 != "") if (color2.toInt() in 1..20) { colorList[1] = colorValueList[color2.toInt() - 1] }
     if (color3 != "") if (color3.toInt() in 1..20) { colorList[2] = colorValueList[color3.toInt() - 1] }
@@ -606,11 +602,7 @@ fun Field() {
         done = true
     }
 
-    val list = remember {
-        mutableStateListOf(
-            -1
-        )
-    }
+    val list = remember { mutableStateListOf(-1) }
     if (list.size < gridSize * gridSize) {
         for (repeat in 0 until gridSize * gridSize - 1) {
             list.add(-1)
@@ -751,24 +743,64 @@ fun Field() {
         if (winner != -1) {
             done = true
         }
-        Text(                                                                                               // descriptor text
-            text = if (winner != -1) {
-                "${playerList[winner]} wins"
-            } else if (turns != gridSize * gridSize) {
-                "player ${playerList[playerNumber]} turn"
-            } else {
-                "tie"
-            },
-            fontSize = 50.sp,
-            color = if (done == false) {
-                Color(colorList[playerNumber])
-            }                                      // text color
-            else if (winner != -1) {
-                Color(colorList[winner])
-            } else {
-                Color.White
+
+        if(winner != -1) {
+            when{
+                playerList[winner].toIntOrNull() == null        -> Text(
+                    text = "${playerList[winner]} wins",
+                    fontSize = 50.sp,
+                    color = Color(colorList[winner])
+                )
+                playerList[winner].toIntOrNull() != null        -> Row() {
+                    Icon(
+                        iconList[winner],
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(50.dp)
+                            .padding(top = 10.dp),
+                        tint = Color(colorList[winner])
+                    )
+                    Text(
+                        text = " wins",
+                        fontSize = 50.sp,
+                        color = Color(colorList[winner])
+                    )}
             }
-        )
+        } else if(turns != gridSize * gridSize) {
+            when {
+                playerList[playerNumber].toIntOrNull() == null      -> Text(
+                    text = "player ${playerList[playerNumber]} turn",
+                    fontSize = 50.sp,
+                    color = Color(colorList[playerNumber])
+                )
+                playerList[playerNumber].toIntOrNull() != null      -> Row() {
+                    Text(
+                        text = "player ",
+                        fontSize = 50.sp,
+                        color = Color(colorList[playerNumber])
+                    )
+                    Icon(
+                        iconList[playerNumber],
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(50.dp)
+                            .padding(top = 10.dp),
+                        tint = Color(colorList[playerNumber])
+                    )
+                    Text(
+                        text = " turn",
+                        fontSize = 50.sp,
+                        color = Color(colorList[playerNumber])
+                    )
+                }
+            }
+        } else {
+            Text(
+                text = "tie",
+                fontSize = 50.sp,
+                color = Color.White
+            )
+        }
 
         Spacer(modifier = Modifier.size(20.dp))
         Button(                                                                                             // restart button
