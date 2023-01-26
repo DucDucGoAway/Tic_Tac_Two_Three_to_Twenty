@@ -1,4 +1,4 @@
-# Tic Tac Two, Three Infinity
+# Tic Tac Two, Three to Infinity
 Tic Tac Two, Three to Infinity: 
 
 1 to infinite* players Tic Tac Toe gameplay
