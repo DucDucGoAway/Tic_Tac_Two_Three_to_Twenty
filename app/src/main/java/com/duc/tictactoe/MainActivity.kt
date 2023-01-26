@@ -7,15 +7,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.duc.tictactoe.ui.theme.TicTacToeTheme
@@ -79,16 +83,16 @@ var name8 = ""
 var name9 = ""
 var name10 = ""
 
-var color1 = -1
-var color2 = -1
-var color3 = -1
-var color4 = -1
-var color5 = -1
-var color6 = -1
-var color7 = -1
-var color8 = -1
-var color9 = -1
-var color10 = -1
+var color1 = ""
+var color2 = ""
+var color3 = ""
+var color4 = ""
+var color5 = ""
+var color6 = ""
+var color7 = ""
+var color8 = ""
+var color9 = ""
+var color10 = ""
 
 
 @Composable
@@ -101,12 +105,12 @@ fun TitleScreen() {
             playersAmount --
             playersAmountDisplay --
         } else {
-            playersAmount = 10
-            playersAmountDisplay = 10
+            playersAmount = 20
+            playersAmountDisplay = 20
         }
     }
     fun PlayerPlus() {
-        if(playersAmountDisplay < 10) {
+        if(playersAmountDisplay < 20) {
             playersAmount++
             playersAmountDisplay++
         } else {
@@ -115,214 +119,243 @@ fun TitleScreen() {
         }
     }
     Box() {
-        Column(modifier = Modifier.padding(start = 15.dp, top = 40.dp)) {
+        Column(modifier = Modifier.padding(start = 5.dp, top = 40.dp)) {
             Row() {
                 var customName1 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customName1, onValueChange = { newText ->
-                    customName1 = newText
+                    customName1 = newText.take(1)
                     name1 = customName1
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true
                 )
                 Text(text = "Letter ")
 
                 var customColor1 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customColor1, onValueChange = { newText ->
                     customColor1 = newText
-                    color1 = customColor1.toInt()
+                    color1 = customColor1
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
                 Text(text = "Color 1")
             }
             Row() {
                 var customName2 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customName2, onValueChange = { newText ->
-                    customName2 = newText
+                    customName2 = newText.take(1)
                     name2 = customName2
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true
                 )
                 Text(text = "Letter ")
 
                 var customColor2 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customColor2, onValueChange = { newText ->
                     customColor2 = newText
-                    color2 = customColor2.toInt()
+                    color2 = customColor2
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
                 Text(text = "Color 2")
             }
             Row() {
                 var customName3 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customName3, onValueChange = { newText ->
-                    customName3 = newText
+                    customName3 = newText.take(1)
                     name3 = customName3
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true
                 )
                 Text(text = "Letter ")
 
                 var customColor3 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customColor3, onValueChange = { newText ->
                     customColor3 = newText
-                    color3 = customColor3.toInt()
+                    color3 = customColor3
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
                 Text(text = "Color 3")
             }
             Row() {
                 var customName4 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customName4, onValueChange = { newText ->
-                    customName4 = newText
+                    customName4 = newText.take(1)
                     name4 = customName4
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true
                 )
                 Text(text = "Letter ")
 
                 var customColor4 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customColor4, onValueChange = { newText ->
                     customColor4 = newText
-                    color4 = customColor4.toInt()
+                    color4 = customColor4
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
                 Text(text = "Color 4")
             }
             Row() {
                 var customName5 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customName5, onValueChange = { newText ->
-                    customName5 = newText
+                    customName5 = newText.take(1)
                     name5 = customName5
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true
                 )
                 Text(text = "Letter ")
 
                 var customColor5 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customColor5, onValueChange = { newText ->
                     customColor5 = newText
-                    color5 = customColor5.toInt()
+                    color5 = customColor5
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
                 Text(text = "Color 5")
             }
             Row() {
                 var customName6 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customName6, onValueChange = { newText ->
-                    customName6 = newText
+                    customName6 = newText.take(1)
                     name6 = customName6
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true
                 )
                 Text(text = "Letter ")
 
                 var customColor6 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customColor6, onValueChange = { newText ->
                     customColor6 = newText
-                    color6 = customColor6.toInt()
+                    color6 = customColor6
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
                 Text(text = "Color 6")
             }
             Row() {
                 var customName7 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customName7, onValueChange = { newText ->
-                    customName7 = newText
+                    customName7 = newText.take(1)
                     name7 = customName7
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true
                 )
                 Text(text = "Letter ")
 
                 var customColor7 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customColor7, onValueChange = { newText ->
                     customColor7 = newText
-                    color7 = customColor7.toInt()
+                    color7 = customColor7
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
                 Text(text = "Color 7")
             }
             Row() {
                 var customName8 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customName8, onValueChange = { newText ->
-                    customName8 = newText
+                    customName8 = newText.take(1)
                     name8 = customName8
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true
                 )
                 Text(text = "Letter ")
 
                 var customColor8 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customColor8, onValueChange = { newText ->
                     customColor8 = newText
-                    color8 = customColor8.toInt()
+                    color8 = customColor8
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
                 Text(text = "Color 8")
             }
             Row() {
                 var customName9 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customName9, onValueChange = { newText ->
-                    customName9 = newText
+                    customName9 = newText.take(1)
                     name9 = customName9
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp)
                 )
                 Text(text = "Letter ")
 
                 var customColor9 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customColor9, onValueChange = { newText ->
                     customColor9 = newText
-                    color9 = customColor9.toInt()
+                    color9 = customColor9
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
                 Text(text = "Color 9")
             }
             Row() {
                 var customName10 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customName10, onValueChange = { newText ->
-                    customName10 = newText
+                    customName10 = newText.take(1)
                     name10 = customName10
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true
                 )
                 Text(text = "Letter ")
 
                 var customColor10 by remember{ mutableStateOf("")}
                 OutlinedTextField(value = customColor10, onValueChange = { newText ->
                     customColor10 = newText
-                    color10 = customColor10.toInt()
+                    color10 = customColor10
                 }, modifier = Modifier
                     .width(100.dp)
-                    .height(40.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
                 Text(text = "Color 10")
             }
@@ -383,16 +416,16 @@ fun Field() {
         )
     }
 
-        if(name1 == String() && name1 != "") { playerList[0] = name1 }
-        if(name2 == String() && name2 != "") { playerList[1] = name2 }
-        if(name3 == String() && name3 != "") { playerList[2] = name3 }
-        if(name4 == String() && name4 != "") { playerList[3] = name4 }
-        if(name5 == String() && name5 != "") { playerList[4] = name5 }
-        if(name6 == String() && name6 != "") { playerList[5] = name6 }
-        if(name7 == String() && name7 != "") { playerList[6] = name7 }
-        if(name8 == String() && name8 != "") { playerList[7] = name8 }
-        if(name9 == String() && name9 != "") { playerList[8] = name9 }
-        if(name10 == String() && name10 != "") { playerList[9] = name10 }
+        if(name1 != "" && name1 != " ") { playerList[0] = name1 }
+        if(name2 != "" && name2 != " ") { playerList[1] = name2 }
+        if(name3 != "" && name3 != " ") { playerList[2] = name3 }
+        if(name4 != "" && name4 != " ") { playerList[3] = name4 }
+        if(name5 != "" && name5 != " ") { playerList[4] = name5 }
+        if(name6 != "" && name6 != " ") { playerList[5] = name6 }
+        if(name7 != "" && name7 != " ") { playerList[6] = name7 }
+        if(name8 != "" && name8 != " ") { playerList[7] = name8 }
+        if(name9 != "" && name9 != " ") { playerList[8] = name9 }
+        if(name10 != "" && name10 != " ") { playerList[9] = name10 }
 
     val colorValueList = remember {
         mutableStateListOf(
@@ -425,16 +458,16 @@ fun Field() {
     for(colorListAddRepeater in 1 until playersAmount) {
         colorList.add(colorValueList[colorListAddRepeater])
     }
-        if(color1 >= 1 && color1 <= 20) {colorList.set(0, colorValueList[color1-1])}
-        if(color2 >= 1 && color2 <= 20) {colorList.set(1, colorValueList[color2-1])}
-        if(color3 >= 1 && color3 <= 20) {colorList.set(2, colorValueList[color3-1])}
-        if(color4 >= 1 && color4 <= 20) {colorList.set(3, colorValueList[color4-1])}
-        if(color5 >= 1 && color5 <= 20) {colorList.set(4, colorValueList[color5-1])}
-        if(color6 >= 1 && color6 <= 20) {colorList.set(5, colorValueList[color6-1])}
-        if(color7 >= 1 && color7 <= 20) {colorList.set(6, colorValueList[color7-1])}
-        if(color8 >= 1 && color8 <= 20) {colorList.set(7, colorValueList[color8-1])}
-        if(color9 >= 1 && color9 <= 20) {colorList.set(8, colorValueList[color9-1])}
-        if(color10 >= 1 && color10 <= 20) {colorList.set(9, colorValueList[color10-1])}
+        if(color1 != "")if(color1.toInt() in 1..20) { colorList[0] = colorValueList[color1.toInt()-1] }
+        if(color2 != "")if(color2.toInt() in 1..20) { colorList[1] = colorValueList[color2.toInt()-1] }
+        if(color3 != "")if(color3.toInt() in 1..20) { colorList[2] = colorValueList[color3.toInt()-1] }
+        if(color4 != "")if(color4.toInt() in 1..20) { colorList[3] = colorValueList[color4.toInt()-1] }
+        if(color5 != "")if(color5.toInt() in 1..20) { colorList[4] = colorValueList[color5.toInt()-1] }
+        if(color6 != "")if(color6.toInt() in 1..20) { colorList[5] = colorValueList[color6.toInt()-1] }
+        if(color7 != "")if(color7.toInt() in 1..20) { colorList[6] = colorValueList[color7.toInt()-1] }
+        if(color8 != "")if(color8.toInt() in 1..20) { colorList[7] = colorValueList[color8.toInt()-1] }
+        if(color9 != "")if(color9.toInt() in 1..20) { colorList[8] = colorValueList[color9.toInt()-1] }
+        if(color10 != "")if(color10.toInt() in 1..20) { colorList[9] = colorValueList[color10.toInt()-1] }
 
     var playerNumber by remember { mutableStateOf(0) }
     var turns by remember { mutableStateOf(0) }
@@ -463,24 +496,27 @@ fun Field() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LazyVerticalGrid(
-            cells = GridCells.Fixed(gridSize)
+            cells = GridCells.Fixed(gridSize),
+            verticalArrangement = Arrangement.spacedBy(1.dp),
+            horizontalArrangement = Arrangement.spacedBy(1.dp)
         ) {
             itemsIndexed(list) { index, s ->
-                Button(                                                                                     // button
-                    onClick = {
-                        if (done == false) {
-                            if (list[index] == -1) {
-                                list[index] = playerNumber
-                                if (playerNumber < playersAmount - 1) {
-                                    playerNumber++
-                                } else {
-                                    playerNumber = 0
+                Box(
+                    modifier = Modifier
+                        .background(color = buttonColor)
+                        .clickable {
+                            if (done == false) {
+                                if (list[index] == -1) {
+                                    list[index] = playerNumber
+                                    if (playerNumber < playersAmount - 1) {
+                                        playerNumber++
+                                    } else {
+                                        playerNumber = 0
+                                    }
+                                    turns++
                                 }
-                                turns++
                             }
                         }
-                    },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)                     // button color
                 ) {
                     Text(                                                                                   // button text
                         text = if (list[index] != -1) {
@@ -493,7 +529,9 @@ fun Field() {
                             Color(colorList[list[index]])
                         } else {
                             Color.Black
-                        }
+                        },
+                        modifier = Modifier
+                            .align(Alignment.Center)
                     )
                 }
             }
