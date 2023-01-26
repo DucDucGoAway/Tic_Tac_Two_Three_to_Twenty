@@ -584,39 +584,20 @@ fun Field() {
         mutableStateListOf(colorValueList[0])
     }
 
-    for (colorListAddRepeater in 1 until playersAmount) {
+
+    for (colorListAddRepeater in 1 until 20) {
         colorList.add(colorValueList[colorListAddRepeater])
     }
-    if (color1 != "") if (color1.toInt() in 1..20) {
-        colorList[0] = colorValueList[color1.toInt() - 1]
-    }
-    if (color2 != "") if (color2.toInt() in 1..20) {
-        colorList[1] = colorValueList[color2.toInt() - 1]
-    }
-    if (color3 != "") if (color3.toInt() in 1..20) {
-        colorList[2] = colorValueList[color3.toInt() - 1]
-    }
-    if (color4 != "") if (color4.toInt() in 1..20) {
-        colorList[3] = colorValueList[color4.toInt() - 1]
-    }
-    if (color5 != "") if (color5.toInt() in 1..20) {
-        colorList[4] = colorValueList[color5.toInt() - 1]
-    }
-    if (color6 != "") if (color6.toInt() in 1..20) {
-        colorList[5] = colorValueList[color6.toInt() - 1]
-    }
-    if (color7 != "") if (color7.toInt() in 1..20) {
-        colorList[6] = colorValueList[color7.toInt() - 1]
-    }
-    if (color8 != "") if (color8.toInt() in 1..20) {
-        colorList[7] = colorValueList[color8.toInt() - 1]
-    }
-    if (color9 != "") if (color9.toInt() in 1..20) {
-        colorList[8] = colorValueList[color9.toInt() - 1]
-    }
-    if (color10 != "") if (color10.toInt() in 1..20) {
-        colorList[9] = colorValueList[color10.toInt() - 1]
-    }
+    if (color1 != "") if (color1.toInt() in 1..20) { colorList[0] = colorValueList[color1.toInt() - 1] }
+    if (color2 != "") if (color2.toInt() in 1..20) { colorList[1] = colorValueList[color2.toInt() - 1] }
+    if (color3 != "") if (color3.toInt() in 1..20) { colorList[2] = colorValueList[color3.toInt() - 1] }
+    if (color4 != "") if (color4.toInt() in 1..20) { colorList[3] = colorValueList[color4.toInt() - 1] }
+    if (color5 != "") if (color5.toInt() in 1..20) { colorList[4] = colorValueList[color5.toInt() - 1] }
+    if (color6 != "") if (color6.toInt() in 1..20) { colorList[5] = colorValueList[color6.toInt() - 1] }
+    if (color7 != "") if (color7.toInt() in 1..20) { colorList[6] = colorValueList[color7.toInt() - 1] }
+    if (color8 != "") if (color8.toInt() in 1..20) { colorList[7] = colorValueList[color8.toInt() - 1] }
+    if (color9 != "") if (color9.toInt() in 1..20) { colorList[8] = colorValueList[color9.toInt() - 1] }
+    if (color10 != "") if (color10.toInt() in 1..20) { colorList[9] = colorValueList[color10.toInt() - 1] }
 
     var playerNumber by remember { mutableStateOf(0) }
     var turns by remember { mutableStateOf(0) }
