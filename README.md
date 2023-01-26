@@ -1,3 +1,4 @@
-# Tic_Tac_Toe
-tic toc toe game
-the brach for infinite players gameplay
+# Tic Tac Two, Three to Twenty
+Tic Tac Two, Three to Twenty: 
+
+1 to 20 players Tic Tac Toe gameplay
