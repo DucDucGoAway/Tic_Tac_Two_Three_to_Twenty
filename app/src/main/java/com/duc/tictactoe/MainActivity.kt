@@ -25,6 +25,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.duc.tictactoe.ui.theme.TicTacToeTheme
+import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -118,19 +119,14 @@ fun TitleScreen() {
             playersAmount--
             playersAmountDisplay--
         } else {
-            playersAmount = 20
-            playersAmountDisplay = 20
+            playersAmount = 1
+            playersAmountDisplay = 1
         }
     }
 
     fun PlayerPlus() {
-        if (playersAmountDisplay < 20) {
             playersAmount++
             playersAmountDisplay++
-        } else {
-            playersAmount = 1
-            playersAmountDisplay = 1
-        }
     }
     Box() {
         Column(modifier = Modifier.padding(start = 5.dp, top = 40.dp)) {
@@ -451,6 +447,7 @@ fun Field() {
             "M"
         )
     }
+
     val iconValueList = remember {
         mutableStateListOf(
             Icons.Rounded.Call,
@@ -509,29 +506,9 @@ fun Field() {
     }
 
     val iconList = remember {
-        mutableStateListOf(
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-            iconValueList[0],
-        )
+        mutableStateListOf(iconValueList[0])
     }
+    for (iconListAdd in 0 .. playersAmount) {iconList.add(iconValueList[0])}
 
     if(name1 != "" && name1 != " ") { playerList[0] = name1.take(1) }
     if(name2 != "" && name2 != " ") { playerList[1] = name2.take(1) }
@@ -554,6 +531,12 @@ fun Field() {
     if(name8.toIntOrNull() != null) if(name8.toInt() in 0..50){iconList[7] = iconValueList[name8.toInt()]}
     if(name9.toIntOrNull() != null) if(name9.toInt() in 0..50){iconList[8] = iconValueList[name9.toInt()]}
     if(name10.toIntOrNull() != null) if(name10.toInt() in 0..50){iconList[9] = iconValueList[name10.toInt()]}
+
+
+    if (playerList.size < playersAmount) {for (playerListAddRepeat in 20 .. playersAmount) {playerList.add("")
+        playerList[playerListAddRepeat] = (0 .. 50).random().toString()
+        iconList[playerListAddRepeat] = iconValueList[playerList[playerListAddRepeat].toInt()]
+    }}
 
 
     val colorValueList = remember {
@@ -580,9 +563,23 @@ fun Field() {
             0xFF8c0033
         )
     }
+    var red = 0
+    var green = 0
+    var blue = 0
+    var hex = "0xFF696969"
+
+    for (colorValueListAddRepeater in 20..playersAmount) {
+        red = (200..255).random()
+        green = (200..255).random()
+        blue = (200..255).random()
+        hex = red.toString() + green.toString() + blue.toString()
+        colorValueList.add(0xFF + hex.toLong(16))
+    }
+
     val colorList = remember { mutableStateListOf(colorValueList[0]) }
 
     for (colorListAddRepeater in 1 until 20) { colorList.add(colorValueList[colorListAddRepeater]) }
+    if(colorList.size < playersAmount) {for (colorListAddRepeaterExtra in 20 until playersAmount) {colorList.add(colorValueList[colorListAddRepeaterExtra])}}
 
     if (color1 != "") if (color1.toInt() in 1..20) { colorList[0] = colorValueList[color1.toInt() - 1] }
     if (color2 != "") if (color2.toInt() in 1..20) { colorList[1] = colorValueList[color2.toInt() - 1] }
