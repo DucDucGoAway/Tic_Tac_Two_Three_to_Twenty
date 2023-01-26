@@ -393,9 +393,18 @@ fun TitleScreen() {
                 )
                 Text(text = "Color 10")
             }
-            Spacer(modifier = Modifier.size(20.dp))
-            Text(text = "Download:", modifier = Modifier.padding(5.dp).wrapContentWidth(), fontSize = 30.sp)
-            Text(text = "github.com/DucDucGoAway/Tic_Tac_Two_Three_to_Twenty", fontSize = 40.sp, modifier = Modifier.wrapContentWidth().padding(10.dp))
+            Text(text = "Download:",
+                modifier = Modifier.padding(5.dp).wrapContentWidth(),
+                fontSize = 25.sp,
+                color = Color.White
+            )
+            Text(text = "github.com/DucDucGoAway/Tic_Tac_Two_Three_to_Twenty",
+                fontSize = 25.sp,
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .padding(start =5.dp, end = 5.dp),
+                color = Color.White
+                )
         }
 
     }
