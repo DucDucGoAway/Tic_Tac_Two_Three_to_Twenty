@@ -7,15 +7,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.duc.tictactoe.ui.theme.TicTacToeTheme
@@ -30,368 +34,605 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Field()
+                    var start by remember { mutableStateOf(false) }                             //title screen
+                    Column() {
+                        Button(
+                            onClick = { if(start == false) {start = true} else {
+                                start = false
+                                PlayerAmountReset()
+                            } },
+                            modifier = Modifier
+                                .height(35.dp)
+                                .fillMaxWidth(),
+                            colors = if(start == false) {
+                                ButtonDefaults.buttonColors(Color.Green)
+                            } else {
+                                ButtonDefaults.buttonColors(Color.Red)
+                            }
+                        ) {
+                            Text(text = if(start == false) {"start"}
+                            else {"stop"})
+                        }
+
+                    }
+
+                    if (start == false) {
+                            TitleScreen()
+                    } else  {
+                        Field()
+                    }
                 }
             }
         }
     }
 }
 
-var buttonColor = Color(0xFF6e6e6e)
-/*
-var imageX = R.drawable.x
-var imageO = R.drawable.o
-var imageNone = R.drawable.none
- */
-var buttonSize = 80.sp
 
-@SuppressLint("SuspiciousIndentation")
+var playersAmount = 2
+fun PlayerAmountReset() {
+    playersAmount = 2
+}
+var name1 = ""
+var name2 = ""
+var name3 = ""
+var name4 = ""
+var name5 = ""
+var name6 = ""
+var name7 = ""
+var name8 = ""
+var name9 = ""
+var name10 = ""
+
+var color1 = ""
+var color2 = ""
+var color3 = ""
+var color4 = ""
+var color5 = ""
+var color6 = ""
+var color7 = ""
+var color8 = ""
+var color9 = ""
+var color10 = ""
+
+
 @Composable
-fun Field() {
-    var player by remember { mutableStateOf("x") }
-    var turns by remember { mutableStateOf(0) }
-    var done = false
+fun TitleScreen() {
+    var playersAmountDisplay by remember {
+        mutableStateOf(2)
+    }
+    fun PlayerMinus() {
+        if(playersAmountDisplay > 1) {
+            playersAmount --
+            playersAmountDisplay --
+        } else {
+            playersAmount = 20
+            playersAmountDisplay = 20
+        }
+    }
+    fun PlayerPlus() {
+        if(playersAmountDisplay < 20) {
+            playersAmount++
+            playersAmountDisplay++
+        } else {
+            playersAmount = 1
+            playersAmountDisplay = 1
+        }
+    }
+    Box() {
+        Column(modifier = Modifier.padding(start = 5.dp, top = 40.dp)) {
+            Row() {
+                var customName1 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName1, onValueChange = { newText ->
+                    customName1 = newText.take(1)
+                    name1 = customName1
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true
+                )
+                Text(text = "Letter ")
 
-    val list = remember { mutableStateListOf("", "", "", "", "", "", "", "", "") }
+                var customColor1 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor1, onValueChange = { newText ->
+                    customColor1 = newText
+                    color1 = customColor1
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                Text(text = "Color 1")
+            }
+            Row() {
+                var customName2 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName2, onValueChange = { newText ->
+                    customName2 = newText.take(1)
+                    name2 = customName2
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true
+                )
+                Text(text = "Letter ")
+
+                var customColor2 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor2, onValueChange = { newText ->
+                    customColor2 = newText
+                    color2 = customColor2
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                Text(text = "Color 2")
+            }
+            Row() {
+                var customName3 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName3, onValueChange = { newText ->
+                    customName3 = newText.take(1)
+                    name3 = customName3
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true
+                )
+                Text(text = "Letter ")
+
+                var customColor3 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor3, onValueChange = { newText ->
+                    customColor3 = newText
+                    color3 = customColor3
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                Text(text = "Color 3")
+            }
+            Row() {
+                var customName4 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName4, onValueChange = { newText ->
+                    customName4 = newText.take(1)
+                    name4 = customName4
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true
+                )
+                Text(text = "Letter ")
+
+                var customColor4 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor4, onValueChange = { newText ->
+                    customColor4 = newText
+                    color4 = customColor4
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                Text(text = "Color 4")
+            }
+            Row() {
+                var customName5 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName5, onValueChange = { newText ->
+                    customName5 = newText.take(1)
+                    name5 = customName5
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true
+                )
+                Text(text = "Letter ")
+
+                var customColor5 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor5, onValueChange = { newText ->
+                    customColor5 = newText
+                    color5 = customColor5
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                Text(text = "Color 5")
+            }
+            Row() {
+                var customName6 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName6, onValueChange = { newText ->
+                    customName6 = newText.take(1)
+                    name6 = customName6
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true
+                )
+                Text(text = "Letter ")
+
+                var customColor6 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor6, onValueChange = { newText ->
+                    customColor6 = newText
+                    color6 = customColor6
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                Text(text = "Color 6")
+            }
+            Row() {
+                var customName7 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName7, onValueChange = { newText ->
+                    customName7 = newText.take(1)
+                    name7 = customName7
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true
+                )
+                Text(text = "Letter ")
+
+                var customColor7 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor7, onValueChange = { newText ->
+                    customColor7 = newText
+                    color7 = customColor7
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                Text(text = "Color 7")
+            }
+            Row() {
+                var customName8 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName8, onValueChange = { newText ->
+                    customName8 = newText.take(1)
+                    name8 = customName8
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true
+                )
+                Text(text = "Letter ")
+
+                var customColor8 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor8, onValueChange = { newText ->
+                    customColor8 = newText
+                    color8 = customColor8
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                Text(text = "Color 8")
+            }
+            Row() {
+                var customName9 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName9, onValueChange = { newText ->
+                    customName9 = newText.take(1)
+                    name9 = customName9
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp)
+                )
+                Text(text = "Letter ")
+
+                var customColor9 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor9, onValueChange = { newText ->
+                    customColor9 = newText
+                    color9 = customColor9
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                Text(text = "Color 9")
+            }
+            Row() {
+                var customName10 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customName10, onValueChange = { newText ->
+                    customName10 = newText.take(1)
+                    name10 = customName10
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true
+                )
+                Text(text = "Letter ")
+
+                var customColor10 by remember{ mutableStateOf("")}
+                OutlinedTextField(value = customColor10, onValueChange = { newText ->
+                    customColor10 = newText
+                    color10 = customColor10
+                }, modifier = Modifier
+                    .width(100.dp)
+                    .height(50.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                Text(text = "Color 10")
+            }
+        }
+
+    }
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(20.dp),
+            .padding(top = 20.dp, end = 15.dp),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.End
+    ) {
+        Spacer(modifier = Modifier.size(50.dp))
+        Text(text = "$playersAmountDisplay players", modifier = Modifier.padding(bottom = 10.dp), color = Color.White)
+        Button(onClick = { PlayerPlus() }, colors = ButtonDefaults.buttonColors(Color.White)) {
+            Text(text = "+")
+        }
+        Button(onClick = { PlayerMinus() }, colors = ButtonDefaults.buttonColors(Color.White)) {
+            Text(text = "-")
+        }
+    }
+}
+
+
+
+
+@OptIn(ExperimentalFoundationApi::class)
+@SuppressLint("SuspiciousIndentation")
+@Composable
+fun Field() {
+    val buttonColor = Color(0xFFcccccc)
+    val gridSize = playersAmount + 1
+    val textSize = 240.sp / gridSize
+    val playerList = remember {
+        mutableStateListOf(
+            "X",
+            "O",
+            "F",
+            "C",
+            "K",
+            "T",
+            "B",
+            "N",
+            "U",
+            "Z",
+            "P",
+            "R",
+            "G",
+            "J",
+            "L",
+            "H",
+            "E",
+            "A",
+            "I",
+            "M"
+        )
+    }
+
+        if(name1 != "" && name1 != " ") { playerList[0] = name1 }
+        if(name2 != "" && name2 != " ") { playerList[1] = name2 }
+        if(name3 != "" && name3 != " ") { playerList[2] = name3 }
+        if(name4 != "" && name4 != " ") { playerList[3] = name4 }
+        if(name5 != "" && name5 != " ") { playerList[4] = name5 }
+        if(name6 != "" && name6 != " ") { playerList[5] = name6 }
+        if(name7 != "" && name7 != " ") { playerList[6] = name7 }
+        if(name8 != "" && name8 != " ") { playerList[7] = name8 }
+        if(name9 != "" && name9 != " ") { playerList[8] = name9 }
+        if(name10 != "" && name10 != " ") { playerList[9] = name10 }
+
+    val colorValueList = remember {
+        mutableStateListOf(
+            0xFFff0026,
+            0xFF0008ff,
+            0xFF09ff00,
+            0xFFffea00,
+            0xFFb700ff,
+            0xFF00fff7,
+            0xFFff0073,
+            0xFFff8800,
+            0xFF000000,
+            0xFFffffff,
+            0xFF00ff84,
+            0xFF8c1c00,
+            0xFF00598c,
+            0xFF0e008c,
+            0xFF008c05,
+            0xFF8c0000,
+            0xFF006e8c,
+            0xFF608c00,
+            0xFFff7dee,
+            0xFF8c0033
+        )
+    }
+    val colorList = remember {
+        mutableStateListOf(colorValueList[0])
+    }
+
+    for(colorListAddRepeater in 1 until playersAmount) {
+        colorList.add(colorValueList[colorListAddRepeater])
+    }
+        if(color1 != "")if(color1.toInt() in 1..20) { colorList[0] = colorValueList[color1.toInt()-1] }
+        if(color2 != "")if(color2.toInt() in 1..20) { colorList[1] = colorValueList[color2.toInt()-1] }
+        if(color3 != "")if(color3.toInt() in 1..20) { colorList[2] = colorValueList[color3.toInt()-1] }
+        if(color4 != "")if(color4.toInt() in 1..20) { colorList[3] = colorValueList[color4.toInt()-1] }
+        if(color5 != "")if(color5.toInt() in 1..20) { colorList[4] = colorValueList[color5.toInt()-1] }
+        if(color6 != "")if(color6.toInt() in 1..20) { colorList[5] = colorValueList[color6.toInt()-1] }
+        if(color7 != "")if(color7.toInt() in 1..20) { colorList[6] = colorValueList[color7.toInt()-1] }
+        if(color8 != "")if(color8.toInt() in 1..20) { colorList[7] = colorValueList[color8.toInt()-1] }
+        if(color9 != "")if(color9.toInt() in 1..20) { colorList[8] = colorValueList[color9.toInt()-1] }
+        if(color10 != "")if(color10.toInt() in 1..20) { colorList[9] = colorValueList[color10.toInt()-1] }
+
+    var playerNumber by remember { mutableStateOf(0) }
+    var turns by remember { mutableStateOf(0) }
+    var done by remember { mutableStateOf(false) }
+    if (turns == gridSize * gridSize) {
+        done = true
+    }
+
+    val list = remember {
+        mutableStateListOf(
+            -1
+        )
+    }
+    if (list.size < gridSize * gridSize) {
+        for (repeat in 0 until gridSize * gridSize - 1) {
+            list.add(-1)
+        }
+    }
+
+    Column(                                                                                                 // layout
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .padding(5.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LazyVerticalGrid(
-            cells = GridCells.Fixed(3)
+            cells = GridCells.Fixed(gridSize),
+            verticalArrangement = Arrangement.spacedBy(1.dp),
+            horizontalArrangement = Arrangement.spacedBy(1.dp)
         ) {
             itemsIndexed(list) { index, s ->
-                Button(
-                    onClick = {
-                        if (done == false) {
-                            if (list[index] == "") {
-                                list[index] = player
-                                if (player == "x") {
-                                    player = "o"
-                                } else {
-                                    player = "x"
+                Box(
+                    modifier = Modifier
+                        .background(color = buttonColor)
+                        .clickable {
+                            if (done == false) {
+                                if (list[index] == -1) {
+                                    list[index] = playerNumber
+                                    if (playerNumber < playersAmount - 1) {
+                                        playerNumber++
+                                    } else {
+                                        playerNumber = 0
+                                    }
+                                    turns++
                                 }
-                                turns++
                             }
                         }
-                    }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
                 ) {
-                    Text(
-                        text = list[index],
-                        fontSize = buttonSize,
-                        color = Color.Red
-                    )
-                    /*
-                    Image(
-                        painter = when (list[index]) {
-                            "x" -> painterResource(imageX)
-                            "o" -> painterResource(imageO)
-                            else -> painterResource(imageNone)
+                    Text(                                                                                   // button text
+                        text = if (list[index] != -1) {
+                            playerList[list[index]]
+                        } else {
+                            ""
                         },
-                        contentDescription = list[index],
-                         modifier = Modifier
-                            .size(buttonSize)
+                        fontSize = textSize,
+                        color = if (list[index] != -1) {
+                            Color(colorList[list[index]])
+                        } else {
+                            Color.Black
+                        },
+                        modifier = Modifier
+                            .align(Alignment.Center)
                     )
-                     */
                 }
             }
         }
 
-        /*
-        var oneA by remember { mutableStateOf("")}
-        var oneB by remember { mutableStateOf("")}
-        var oneC by remember { mutableStateOf("")}
-        var twoA by remember { mutableStateOf("")}
-        var twoB by remember { mutableStateOf("")}
-        var twoC by remember { mutableStateOf("")}
-        var threeA by remember { mutableStateOf("")}
-        var threeB by remember { mutableStateOf("")}
-        var threeC by remember { mutableStateOf("")}
-
-
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        )
-        {
-            Row {
-                Button(onClick = {
-                    if (done == false) {
-                        if (oneA == "") {
-                            oneA = player
-                            if (player == "x") {
-                                player = "o"
-                            } else {
-                                player = "x"
-                            }
-                            turns++
-                        }
-                }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(oneA) {
-                        "x"     -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = oneA,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-                Button(onClick = {
-                    if (done == false) {
-                        if (oneB == "") {
-                            oneB = player
-                            if (player == "x") {
-                                player = "o"
-                            } else {
-                                player = "x"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(oneB) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = oneB,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-                Button(onClick = {
-                    if (done == false) {
-                        if (oneC == "") {
-                            oneC = player
-                            if (player == "x") {
-                                player = "o"
-                            } else {
-                                player = "x"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(oneC) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = oneC,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
+        fun findWinner(): Int {                                                                             // find Winner
+            fun checkEquals(a: Int, b: Int): Boolean {                                                      // compare numbers
+                if (a >= list.size) return false
+                if (b >= list.size) return false
+                return list[a] == list[b]
             }
-            Row() {
-                Button(onClick = {
-                    if (done == false) {
-                        if (twoA == "") {
-                            twoA = player
-                            if (player == "x") {
-                                player = "o"
-                            } else {
-                                player = "x"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(twoA) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = twoA,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-                Button(onClick = {
-                    if (done == false) {
-                        if (twoB == "") {
-                            twoB = player
-                            if (player == "x") {
-                                player = "o"
-                            } else {
-                                player = "x"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(twoB) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = twoB,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-                Button(onClick = {
-                    if (done == false) {
-                        if (twoC == "") {
-                            twoC = player
-                            if (player == "x") {
-                                player = "o"
-                            } else {
-                                player = "x"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(twoC) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = twoC,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
+                                                                                                            // vertical check
+            for (repeatVertical in 0 until list.size - gridSize * 2) {
+                if (list[repeatVertical] != -1 && checkEquals(
+                        repeatVertical,
+                        repeatVertical + gridSize
+                    ) && list[repeatVertical] == list[repeatVertical + gridSize + gridSize]
+                ) return list[repeatVertical]
             }
-            Row() {
-                Button(onClick = {
-                    if (done == false) {
-                        if (threeA == "") {
-                            threeA = player
-                            if (player == "x") {
-                                player = "o"
-                            } else {
-                                player = "x"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(threeA) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = threeA,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-                Button(onClick = {
-                    if (done == false) {
-                        if (threeB == "") {
-                            threeB = player
-                            if (player == "x") {
-                                player = "o"
-                            } else {
-                                player = "x"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(threeB) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = threeB,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
-                Button(onClick = {
-                    if (done == false) {
-                        if (threeC == "") {
-                            threeC = player
-                            if (player == "x") {
-                                player = "o"
-                            } else {
-                                player = "x"
-                            }
-                            turns++
-                        }
-                    }
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
-                ) {
-                    Image(painter = when(threeC) {
-                        "x"      -> painterResource(imageX)
-                        "o"     -> painterResource(imageO)
-                        else    -> painterResource(imageNone)
-                    },
-                        contentDescription = threeC,
-                        modifier = Modifier
-                            .size(buttonSize)
-                    )
-                }
+                                                                                                            // diagonal right to left check
+            val diagonalRTL = (0 until list.size).filter { index ->                                     // number filter
+                (index + 1) % gridSize != 1 && (index + 1) % gridSize != 2
+                        && index < gridSize * gridSize - gridSize * 2
             }
-            */
-
-        val winCombinations = listOf(
-            listOf(list[0], list[1], list[2]),
-            listOf(list[0], list[4], list[8]),
-            listOf(list[0], list[3], list[6]),
-            listOf(list[1], list[4], list[7]),
-            listOf(list[2], list[5], list[8]),
-            listOf(list[2], list[4], list[6]),
-            listOf(list[3], list[4], list[5]),
-            listOf(list[6], list[7], list[8]),
-        )
-
-
-        fun findWinner(): String {
-            winCombinations.forEach { combi ->
-                if (combi.all { it.isNotEmpty() && it == combi.first() }) return combi.first()
+            for (repeatDiagonalRTL in diagonalRTL) {                                                        // number checker
+                if (list[repeatDiagonalRTL] != -1 && checkEquals(
+                        repeatDiagonalRTL,
+                        repeatDiagonalRTL + gridSize - 1
+                    ) && checkEquals(
+                        repeatDiagonalRTL + gridSize - 1,
+                        repeatDiagonalRTL + 2 * gridSize - 2
+                    )
+                ) return list[repeatDiagonalRTL]
             }
-            return ""
+                                                                                                            // diagonal left to right check
+            val diagonalLTR = (0 until list.size).filter { index ->                                     // number filter
+                (index + 1) % gridSize != 0 && (index + 1) % gridSize != gridSize - 1
+                        && index < gridSize * gridSize - gridSize * 2
+            }
+            for (repeatDiagonalLTR in diagonalLTR) {                                                        // number checker
+                if (list[repeatDiagonalLTR] != -1 && checkEquals(
+                        repeatDiagonalLTR,
+                        repeatDiagonalLTR + gridSize + 1
+                    ) && checkEquals(
+                        repeatDiagonalLTR + gridSize + 1,
+                        repeatDiagonalLTR + gridSize * 2 + 2
+                    )
+                ) return list[repeatDiagonalLTR]
+            }
+                                                                                                            // horizontal
+            val horizontal = (0 until list.size).filter { index ->                                      // number filter
+                (index + 1) % gridSize != 0 && (index + 1) % gridSize != gridSize - 1
+            }
+            for (repeatHorizontal in horizontal) {                                                          // number checker
+                if (list[repeatHorizontal] != -1 && checkEquals(
+                        repeatHorizontal,
+                        repeatHorizontal + 1
+                    ) && checkEquals(repeatHorizontal + 1, repeatHorizontal + 2)
+                ) return list[repeatHorizontal]
+            }
+
+            return -1
         }
 
         val winner = findWinner()
-        Text(
-            text = if (winner.isNotEmpty()) {
-                "$winner wins"
-            } else if (turns != 9) {
-                "player $player turn"                   //placeholder here
+        if (winner != -1) {
+            done = true
+        }
+        Text(                                                                                               // descriptor text
+            text = if (winner != -1) {
+                "${playerList[winner]} wins"
+            } else if (turns != gridSize * gridSize) {
+                "player ${playerList[playerNumber]} turn"
             } else {
                 "tie"
             },
-            fontSize = 50.sp
+            fontSize = 50.sp,
+            color = if(done == false) {Color(colorList[playerNumber])}                                      // text color
+        else if(winner != -1) {Color(colorList[winner])}
+        else {Color.White}
         )
-        if (winner != "") {
-            done = true
-        }
-
 
         Spacer(modifier = Modifier.size(20.dp))
-        Button(
+        Button(                                                                                             // restart button
             onClick = {
                 for (index in 0 until list.size) {
-                    list[index] = ""
+                    list[index] = -1
                 }
                 turns = 0
-                player = "x"
+                playerNumber = 0
+                done = false
             },
             modifier = Modifier
                 .width(150.dp)
-                .height(70.dp)
+                .height(70.dp),
+            colors = if (done == false) {
+                ButtonDefaults.buttonColors(backgroundColor = Color(colorList[playerNumber])
+                )
+            } else {
+                ButtonDefaults.buttonColors(backgroundColor = if(winner != -1) {Color(colorList[winner])} else {Color.White})
+            }
         )
         {
             Text(
@@ -400,6 +641,4 @@ fun Field() {
             )
         }
     }
-
-
 }
