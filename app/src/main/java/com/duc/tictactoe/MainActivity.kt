@@ -563,17 +563,11 @@ fun Field() {
             0xFF8c0033
         )
     }
-    var red = 0
-    var green = 0
-    var blue = 0
-    var hex = "0xFF696969"
+    var hex = "0xFF000000"
 
     for (colorValueListAddRepeater in 20..playersAmount) {
-        red = (200..255).random()
-        green = (200..255).random()
-        blue = (200..255).random()
-        hex = red.toString() + green.toString() + blue.toString()
-        colorValueList.add(0xFF + hex.toLong(16))
+        hex = (7000000..16777216).random().toString()
+        colorValueList.add(("42" + hex).toLong())
     }
 
     val colorList = remember { mutableStateListOf(colorValueList[0]) }
